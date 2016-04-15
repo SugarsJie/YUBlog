@@ -1,2 +1,5 @@
 YuBlog/WebUI/.ntvs_analysis.dat
 YuBlog/WebUI/node_modules
+YuBlog/.vs
+YuBlog/WebUI/bin
+YuBlog/WebUI/obj
