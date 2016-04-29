@@ -1,9 +1,17 @@
 ﻿var express = require('express');
+var session = require('express-session');
+var passport = require('passport');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var flash = require('connect-flash');
+var LocalStrategy = require('passport-local').Strategy;
+var mongoose = require("mongoose");
+
+
+var app = express();
 
 // required for passport
 app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
@@ -14,7 +22,6 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 var routes = require('./routes/index');
 var users = require('./routes/manage');
 
-var app = express();
 
 app.set('port',"8080");
 var listener = app.listen(app.get('port'));
@@ -35,6 +42,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/manage', users);
+
+// passport config
+var Account = require('./models/account');
+passport.use(new LocalStrategy(Account.authenticate()));
+passport.serializeUser(Account.serializeUser());
+passport.deserializeUser(Account.deserializeUser());
+
+// mongoose
+mongoose.connect('mongodb://localhost/yublog');
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
