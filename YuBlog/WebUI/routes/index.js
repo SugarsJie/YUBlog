@@ -4,13 +4,11 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res) {
-    Account.register(new Account({ username : "admin" }), "123456", function (err, account) {
-        if (err) {
-            return res.render('register', { account : account });
-        }
-        
-
-    });
+//    Account.register(new Account({ username : "admin" }), "york9527", function (err, account) {
+//        if (err) {
+//            return res.render('register', { account : account });
+//        }
+//    });
 
     res.render('index', { title: 'YuBlog' });
 });
