@@ -2,22 +2,16 @@
 var passport = require('passport');
 var router = express.Router();
 
-/* GET users listing. */
-router.get('/', function (req, res) {
-    res.render("manage/login");
-});
+function loggedIn(req, res, next) {
+    if (req.user) {
+        next();
+    } else {
+        res.redirect('/login');
+    }
+}
 
-router.post('/login', passport.authenticate("local"),function(req,res) {
-    //res.redirect("/test");
-    res.send("loged in");
-});
-
-//router.post('/login', function (req, res) {
-//    res.send("loged in"); 
-//});
-
-router.get('/test', function (req, res) {
-    res.send("asdf");
+router.get('/', loggedIn, function (req, res, next) {
+    res.send('wellcom' + req.user.username);
 });
 
 module.exports = router;

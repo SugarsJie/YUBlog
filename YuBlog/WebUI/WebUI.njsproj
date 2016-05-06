@@ -32,21 +32,42 @@
   <ItemGroup>
     <Compile Include="app.js" />
     <Compile Include="models\Account.js" />
+    <Compile Include="public\bootstrap-3.3.6\js\bootstrap.js" />
+    <Compile Include="public\bootstrap-3.3.6\js\bootstrap.min.js" />
+    <Compile Include="public\bootstrap-3.3.6\js\npm.js" />
     <Compile Include="routes\index.js" />
     <Compile Include="routes\manage.js" />
     <Compile Include="bin\www" />
     <Content Include="package.json" />
+    <Content Include="public\bootstrap-3.3.6\css\bootstrap-theme.css" />
+    <Content Include="public\bootstrap-3.3.6\css\bootstrap-theme.css.map" />
+    <Content Include="public\bootstrap-3.3.6\css\bootstrap-theme.min.css" />
+    <Content Include="public\bootstrap-3.3.6\css\bootstrap-theme.min.css.map" />
+    <Content Include="public\bootstrap-3.3.6\css\bootstrap.css" />
+    <Content Include="public\bootstrap-3.3.6\css\bootstrap.css.map" />
+    <Content Include="public\bootstrap-3.3.6\css\bootstrap.min.css" />
+    <Content Include="public\bootstrap-3.3.6\css\bootstrap.min.css.map" />
+    <Content Include="public\bootstrap-3.3.6\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="public\bootstrap-3.3.6\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="public\bootstrap-3.3.6\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="public\bootstrap-3.3.6\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="public\bootstrap-3.3.6\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="public\stylesheets\style.styl" />
     <Content Include="README.md" />
     <Content Include="views\error.pug" />
     <Content Include="views\index.pug" />
     <Content Include="views\layout.pug" />
-    <Content Include="views\manage\login.pug" />
+    <Content Include="views\manage\home.pug" />
+    <Content Include="views\login.pug" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\" />
     <Folder Include="models\" />
     <Folder Include="public\" />
+    <Folder Include="public\bootstrap-3.3.6\" />
+    <Folder Include="public\bootstrap-3.3.6\css\" />
+    <Folder Include="public\bootstrap-3.3.6\fonts\" />
+    <Folder Include="public\bootstrap-3.3.6\js\" />
     <Folder Include="public\images\" />
     <Folder Include="public\javascripts\" />
     <Folder Include="public\stylesheets\" />
