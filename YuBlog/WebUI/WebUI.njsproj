@@ -32,6 +32,7 @@
   <ItemGroup>
     <Compile Include="app.js" />
     <Compile Include="models\Account.js" />
+    <Compile Include="models\Blog.js" />
     <Compile Include="public\bootstrap-3.3.6\js\bootstrap.js" />
     <Compile Include="public\bootstrap-3.3.6\js\bootstrap.min.js" />
     <Compile Include="public\bootstrap-3.3.6\js\npm.js" />
