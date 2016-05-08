@@ -1,0 +1,10 @@
+﻿extends ../layout
+
+block content
+	script(src='/ckeditor_4.5.8/ckeditor.js')
+	.create-blog-warpper
+		form( action="/manage/create",method="post")
+			textarea(name='editorBlog',id='editorBlog')
+			script.
+				CKEDITOR.replace( 'editorBlog' );
+			button(type='submit',class='btn btn-default w100') 提交
