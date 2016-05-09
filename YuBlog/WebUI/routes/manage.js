@@ -31,7 +31,8 @@ router.get('/create', function (req, res, next) {
 });
 
 router.post('/create', function (req, res, next) { 
-    res.send(req.body.editorBlog);
+    //res.send(req.body.editorBlog);
+    res.render('manage/blogDetail', { blog: req.body.editorBlog });
 });
 
 
