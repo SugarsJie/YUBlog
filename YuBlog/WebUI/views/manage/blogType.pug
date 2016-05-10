@@ -1,0 +1,31 @@
+﻿extends ../layout
+
+block content
+	.blog-type-wrapper.with-border
+		table.table
+			<caption>博客类型管理</caption>
+			thead
+				tr
+					th 博客类型
+					th 创建时间
+					th 操作
+			if blogTypes
+				each val,index in blogTypes
+					tr
+						td=val.name
+						td=moment(val.date).format('YYYY-MM-DD hh:mm:ss')
+						td 
+							form( action="/manage/deleteblogtype",method="post")
+								<input type='hidden' id='id' name='id' value=#{val._id} />
+								button(type='submit',class='btn btn-danger btn-xs') 删除
+							
+
+	.blog-type-create.with-border
+		form( action="/manage/createblogtype",method="post").form-horizontal
+			.form-group
+				label(for='username',class='col-sm-3 control-label') 博客类型：
+				.col-sm-9
+					input(type='text',class='form-control',id='blogtype',name='blogtype',placeholder='Blog Type')
+			.form-group
+				.col-sm-offset-3.col-sm-9
+					button(type='submit',class='btn btn-primary w100') 添 加
