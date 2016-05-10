@@ -20,14 +20,31 @@ router.get('/', isAuthenticated, function (req, res, next) {
 
 //创建博客
 router.get('/create', isAuthenticated, function (req, res, next) {
-    res.render('manage/createBlog', { title: 'Create Blog' });
+    var blogTypes = BlogType.find({}).sort({ name: 'asc' }).exec(function (err, blogTypes) {
+        res.render('manage/createBlog', { title: 'Create Blog', blogTypes: blogTypes });
+    });
+    
 });
 
-router.post('/create', isAuthenticated, function (req, res, next) { 
-    //res.send(req.body.editorBlog);
-    res.render('manage/blogDetail', { blog: req.body.editorBlog });
+router.post('/create', isAuthenticated, function (req, res, next) {
+    var blog = new Blog({
+        title: req.body.title,
+        tags:req.body.tags,
+        author: "york",
+        body: req.body.editorBlog,
+        comments: [],
+        date: new Date(),
+        hidden: req.body.publish,
+        meta: {}
+    });
+    blog.save();
+    res.render('manage/blogDetail', { blog: blog });
 });
 
+//like查询
+//db.users.find({ "name": /m/ })
+//查询返回指定字段
+//db.xxx.find({}, { "[要查询的字段]": 1 })
 
 //维护博客类型
 router.get('/blogtype', isAuthenticated, function (req, res) {

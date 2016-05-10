@@ -5,4 +5,5 @@ block content
 	script(src='/ckeditor_4.5.8/plugins/codesnippet/lib/highlight/highlight.pack.js')
 	script.
 		hljs.initHighlightingOnLoad();
-	div!=blog
+	p=blog.title
+	div!=blog.body

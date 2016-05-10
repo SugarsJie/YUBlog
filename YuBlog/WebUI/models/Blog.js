@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 var Blog = new Schema({
     title: String,
     author: String,
+    tags: String,
     body: String,
     comments: [{ body: String, date: Date }],
     date: { type: Date, default: Date.now },
