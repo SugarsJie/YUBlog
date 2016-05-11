@@ -70,29 +70,16 @@ block content
 					</form>
 				</div>
 			</div>
-			<div id="updates" class="boxed">
+			#updates.boxed
 				<h2 class="title">Recent Updates</h2>
-				<div class="content">
-					<ul>
-						<li>
-							<h3>March 5, 2007</h3>
-							<p><a href="#">In posuere eleifend odio quisque semper augue mattis wisi maecenas&#8230;</a></p>
-						</li>
-						<li>
-							<h3>March 3, 2007</h3>
-							<p><a href="#">Quisque dictum integer nisl risus, sagittis convallis, rutrum id, congue, and nibh&#8230;</a></p>
-						</li>
-						<li>
-							<h3>February 28, 2007</h3>
-							<p><a href="#">Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue rutrum&#8230;</a></p>
-						</li>
-						<li>
-							<h3>February 25, 2007</h3>
-							<p><a href="#">Nam pede erat, porta eu, lobortis eget, tempus et, tellus. Etiam nequea&#8230;</a></p>
-						</li>
-					</ul>
-				</div>
-			</div>
+				.content
+					ul
+						each val,index in blogs
+							li
+								h3=moment(val.date).format('YYYY-MM-DD')
+								p
+									a(href="")=val.title
+		//
 			<div id="partners" class="boxed">
 				<h2 class="title">Partners</h2>
 				<div class="content">
@@ -111,6 +98,7 @@ block content
 	</div>
 
 	<div id="footer">
-		<p id="legal">Copyright &copy; 2007 AtomoHost. All Rights Reserved. Designed by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>.</p>
+		<p id="legal">Copyright &copy; 2016 www.coderyu.com</p>
+	//
 		<p id="links"><a href="#">Home</a> | <a href="#">Terms of Use</a></p>
 	</div>
