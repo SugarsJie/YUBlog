@@ -11,12 +11,12 @@ router.get('/', function (req, res) {
     //    }
     //});
 
-    res.render('index', { title: 'YuBlog' });
+    res.render('home', { title: 'YuBlog' });
 });
 
 //登录
 router.get('/login', function (req, res) {
-    res.render('login', { title: 'Login-YuBlog' })
+    res.render('login', { title: 'Login-YuBlog' });
 });
 
 //验证登录
