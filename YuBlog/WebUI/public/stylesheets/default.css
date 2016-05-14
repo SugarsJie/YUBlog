@@ -207,6 +207,10 @@ img {
 	font-weight: bold;
 }
 
+#menu a .cur {
+    color:#23527c;
+}
+
 #menu a:hover {
 	text-decoration: underline;
 }
@@ -222,6 +226,11 @@ img {
 	width: 700px;
 	margin: 0 auto;
 	padding: 20px 0;
+}
+.contentMng {
+    width: 700px;
+	margin: 0 auto;
+	padding: 50px 0;
 }
 
 /* Content > Main */

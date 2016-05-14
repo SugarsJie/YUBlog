@@ -7,14 +7,14 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res) {
-    var blogs = Blog.find({}).sort({ _id: 'asc' }).exec(function (err, blogs) {
+    Blog.find({}).sort({ _id: 'asc' }).exec(function (err, blogs) {
         res.render('home', { title: 'YuBlog', blogs: blogs, moment: moment });
     });
 });
 
 //登录
 router.get('/login', function (req, res) {
-    res.render('login', { title: 'Login-YuBlog' });
+    res.render('login', { title: 'Login-YuBlog',hideMenu:true });
 });
 
 //验证登录

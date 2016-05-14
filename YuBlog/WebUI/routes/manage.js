@@ -6,6 +6,8 @@ var moment = require("moment");
 var router = express.Router();
 
 function isAuthenticated(req, res, next) {
+    res.locals.user = req.user;
+    req.locals.currUrl = req.originalUrl;
     if (req.user) {
         next();
     } else {
@@ -15,12 +17,12 @@ function isAuthenticated(req, res, next) {
 
 //管理后台首页
 router.get('/', isAuthenticated, function (req, res, next) {
-    res.send('wellcom' + req.user.username);
+    res.render('manage/homeMng', { title:"Manage-YuBlog" });
 });
 
 //创建博客
 router.get('/create', isAuthenticated, function (req, res, next) {
-    var blogTypes = BlogType.find({}).sort({ name: 'asc' }).exec(function (err, blogTypes) {
+    BlogType.find({}).sort({ name: 'asc' }).exec(function (err, blogTypes) {
         res.render('manage/createBlog', { title: 'Create Blog', blogTypes: blogTypes });
     });
     
@@ -48,7 +50,7 @@ router.post('/create', isAuthenticated, function (req, res, next) {
 
 //维护博客类型
 router.get('/blogtype', isAuthenticated, function (req, res) {
-    var blogTypes = BlogType.find({}).sort({name:'asc'}).exec(function(err,blogTypes) {
+    BlogType.find({}).sort({name:'asc'}).exec(function(err,blogTypes) {
         res.render('manage/blogType', { title: 'BlogType', blogTypes: blogTypes,moment:moment });
     });
 });

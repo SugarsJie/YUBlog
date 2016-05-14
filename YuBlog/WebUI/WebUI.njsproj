@@ -681,12 +681,13 @@
     <Content Include="public\stylesheets\style.styl" />
     <Content Include="README.md" />
     <Content Include="views\error.pug" />
-    <Content Include="views\Home.pug" />
+    <Content Include="views\home.pug" />
     <Content Include="views\layout.pug" />
+    <Content Include="views\layoutMng.pug" />
     <Content Include="views\manage\blogDetail.pug" />
     <Content Include="views\manage\blogType.pug" />
     <Content Include="views\manage\createBlog.pug" />
-    <Content Include="views\manage\home.pug" />
+    <Content Include="views\manage\homeMng.pug" />
     <Content Include="views\login.pug" />
   </ItemGroup>
   <ItemGroup>

@@ -21,13 +21,14 @@ html
 				<h2><a href="#">coding</a></h2>
 				</div>
 			</div>
-			<div id="menu">
-				<ul>
-					<li class="first"><a href="#">关于我</a></li>
-					<li><a href="#">Products</a></li>
-					<li><a href="#">Services</a></li>
-					<li><a href="#">Clients</a></li>
-					<li><a href="#">Support</a></li>
-				</ul>
-			</div>
-			block content
+			if user
+				#menu
+					ul
+						<li class="first"><a href="/manage/blogtype">博客类型</a></li>
+						<li><a href="#">Products</a></li>
+						<li><a href="#">Services</a></li>
+						<li><a href="#">Clients</a></li>
+						<li><a href="#">Support</a></li>
+
+			.contentMng
+				block content

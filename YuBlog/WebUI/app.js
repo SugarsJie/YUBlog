@@ -22,7 +22,6 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 var routes = require('./routes/index');
 var users = require('./routes/manage');
 
-
 app.set('port',"8080");
 var listener = app.listen(app.get('port'));
 console.log('Your friendly Express server, listening on port %s', listener.address().port);
