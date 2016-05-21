@@ -687,6 +687,7 @@
     <Content Include="views\manage\blogDetail.pug" />
     <Content Include="views\manage\blogType.pug" />
     <Content Include="views\manage\createBlog.pug" />
+    <Content Include="views\manage\editBlog.pug" />
     <Content Include="views\manage\homeMng.pug" />
     <Content Include="views\login.pug" />
   </ItemGroup>

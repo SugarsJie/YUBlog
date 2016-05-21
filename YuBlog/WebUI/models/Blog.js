@@ -12,7 +12,8 @@ var Blog = new Schema({
     meta: {
         votes: Number,
         favs: Number
-    }
+    },
+    blogType:String
 });
 
 module.exports = mongoose.model('Blog', Blog);

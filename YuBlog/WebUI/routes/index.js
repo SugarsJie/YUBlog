@@ -19,7 +19,9 @@ router.get('/login', function (req, res) {
 
 //验证登录
 router.post('/login', passport.authenticate('local'), function (req, res) {
-    res.redirect('/manage');
+    res.redirect(req.session.returnUrl || '/manage');
+    delete req.session.returnUrl;
+
 });
 
 //退出网站

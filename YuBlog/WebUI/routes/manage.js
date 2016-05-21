@@ -7,7 +7,7 @@ var router = express.Router();
 
 function isAuthenticated(req, res, next) {
     res.locals.user = req.user;
-    req.locals.currUrl = req.originalUrl;
+    req.session.returnUrl = req.originalUrl;
     if (req.user) {
         next();
     } else {
@@ -17,7 +17,9 @@ function isAuthenticated(req, res, next) {
 
 //管理后台首页
 router.get('/', isAuthenticated, function (req, res, next) {
-    res.render('manage/homeMng', { title:"Manage-YuBlog" });
+    Blog.find({}).sort({ date: -1 }).exec(function (err, blogs) {
+        res.render('manage/homeMng', { title: 'Manage-Home', blogs: blogs, moment: moment });
+    });
 });
 
 //创建博客
@@ -37,11 +39,51 @@ router.post('/create', isAuthenticated, function (req, res, next) {
         comments: [],
         date: new Date(),
         hidden: req.body.publish,
-        meta: {}
+        meta: {},
+        blogType:req.body.blogType
     });
     blog.save();
     res.render('manage/blogDetail', { blog: blog });
 });
+
+//修改博客
+router.get('/edit/:blogId', isAuthenticated,function(req,res,next){
+    Blog.findById(req.params.blogId, function (err,blog) {
+        res.render("manage/editBlog", { blog: blog });
+    });
+});
+
+//一个请求多个查询的解决方法
+//function findStudent(req, res, next) {
+//    var dbRequest = 'SELECT * FROM Students WHERE IDCard = \'' + req.query['id'] + '\'';
+//    db.all(dbRequest, function (error, rows) {
+//        if (rows.length !== 0) {
+//            req.students = rows;
+//            return next();
+//        }
+        
+//        res.render('incorrect_student'); /* Render the error page. */            
+//    });
+//}
+
+//function findGroups(req, res, next) {
+//    dbRequest = 'SELECT * FROM Groups WHERE Name = \'' + req.query['group'] + '\'';
+//    db.all(dbRequest, function (error, rows) {
+//        /* Add selected data to previous saved data. */
+//        req.groups = rows;
+//        next();
+//        }
+//    });
+//}
+
+//function renderStudentsPage(req, res) {
+//    res.render('student', {
+//        students: req.students,
+//        groups: req.groups
+//    });
+//}
+
+app.get('/student', findStudent, findGroups, renderStudentsPage);
 
 //like查询
 //db.users.find({ "name": /m/ })

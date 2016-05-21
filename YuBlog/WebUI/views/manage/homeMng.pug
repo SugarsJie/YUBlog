@@ -1,4 +1,30 @@
 ﻿extends ../layoutMng
 
 block content
-	h2 wellcome to manage home page.
+	.blog-type-wrapper.with-border
+		table.table
+			<caption>博客管理</caption>
+			<col width="40%" />
+			<col width="20%" />
+			<col width="10%" />
+			<col width="20%" />
+			<col width="10%" />
+			thead
+				tr
+					th 标题
+					th 标签
+					th 作者
+					th 时间
+					th 操作
+			if blogs
+				each val,index in blogs
+					tr
+						td
+							<a href="/manage/edit/#{val._id}">#{val.title}</a>
+						td=val.tags
+						td=val.author
+						td=moment(val.date).format('YYYY-MM-DD hh:mm:ss')
+						td 
+							form( action="/manage/deleteblogtype",method="post")
+								<input type='hidden' id='id' name='id' value=#{val._id} />
+								button(type='submit',class='btn btn-danger btn-xs') 删除

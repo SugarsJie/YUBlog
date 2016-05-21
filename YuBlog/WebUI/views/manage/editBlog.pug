@@ -1,0 +1,20 @@
+﻿extends ../layoutMng
+
+block content
+	script(src='/ckeditor_4.5.8/ckeditor.js')
+	.create-blog-warpper
+		form( action="/manage/create",method="post")
+			.form-group
+				<label for="title">博客标题</label>
+				<input type="text" class="form-control" id="title" name='title' placeholder="标题" value="#{blog.title}">
+			.form-group
+				<label for="tags">关键热词</label>
+				<input type="text" class="form-control" id="tags" name='tags' placeholder="关键词" value="#{blog.tags}">
+			.form-group
+				<label for='blogType'>博客类型</label>
+				select.form-control#blogType(name='blogType')
+					each val,index in blog
+						option(value=val.name,selected=blog.blogType)=val.name
+
+				
+			button(type='submit',class='btn btn-default w100') 提交
