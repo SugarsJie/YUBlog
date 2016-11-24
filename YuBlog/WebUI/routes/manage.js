@@ -47,11 +47,23 @@ router.post('/create', isAuthenticated, function (req, res, next) {
 });
 
 //修改博客
-router.get('/edit/:blogId', isAuthenticated,function(req,res,next){
-    Blog.findById(req.params.blogId, function (err,blog) {
-        res.render("manage/editBlog", { blog: blog });
-    });
+router.get('/edit/:blogId', isAuthenticated, findBlogTypes, findBlog, function (req, res, next) {
+    res.render("manage/editBlog", { blog: req.blog, blogTypes: req.blogTypes });
 });
+
+function findBlog(req, res, next) {
+    Blog.findById(req.params.blogId, function (err, blog) {
+        req.blog = blog;
+        next();
+    });
+}
+
+function findBlogTypes(req,res,next) {
+    BlogType.find({}).sort({ name: 'asc' }).exec(function (err, blogTypes) {
+        req.blogTypes = blogTypes;
+        next();
+    });
+}
 
 //一个请求多个查询的解决方法
 //function findStudent(req, res, next) {
@@ -83,7 +95,7 @@ router.get('/edit/:blogId', isAuthenticated,function(req,res,next){
 //    });
 //}
 
-app.get('/student', findStudent, findGroups, renderStudentsPage);
+//app.get('/student', findStudent, findGroups, renderStudentsPage);
 
 //like查询
 //db.users.find({ "name": /m/ })

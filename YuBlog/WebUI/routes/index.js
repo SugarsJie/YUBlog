@@ -7,6 +7,11 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res) {
+//    Account.register(new Account({ username: "admin" }), "123456", function (err, account) {
+//        if (err) {
+//            return res.render('/', { account: account });
+//        }
+//    });
     Blog.find({}).sort({ _id: 'asc' }).exec(function (err, blogs) {
         res.render('home', { title: 'YuBlog', blogs: blogs, moment: moment });
     });

@@ -13,8 +13,8 @@ block content
 			.form-group
 				<label for='blogType'>博客类型</label>
 				select.form-control#blogType(name='blogType')
-					each val,index in blog
-						option(value=val.name,selected=blog.blogType)=val.name
+					each val,index in blogTypes
+						option(value=val.name,selected=val.id)=val.name
 
 				
 			button(type='submit',class='btn btn-default w100') 提交
