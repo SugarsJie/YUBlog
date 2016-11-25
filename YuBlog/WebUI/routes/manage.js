@@ -5,7 +5,8 @@ var BlogType = require('../models/blogtype');
 var moment = require("moment");
 var router = express.Router();
 
-function isAuthenticated(req, res, next) {
+//管理后台需要登录后才能进入
+router.use(function(req, res, next) {
     res.locals.user = req.user;
     req.session.returnUrl = req.originalUrl;
     if (req.user) {
@@ -13,23 +14,23 @@ function isAuthenticated(req, res, next) {
     } else {
         res.redirect('/login');
     }
-}
+});
 
 //管理后台首页
-router.get('/', isAuthenticated, function (req, res, next) {
+router.get('/', function (req, res, next) {
     Blog.find({}).sort({ date: -1 }).exec(function (err, blogs) {
         res.render('manage/homeMng', { title: 'Manage-Home', blogs: blogs, moment: moment });
     });
 });
 
 //创建博客
-router.get('/create', isAuthenticated, function (req, res, next) {
+router.get('/create', function (req, res, next) {
     BlogType.find({}).sort({ name: 'asc' }).exec(function (err, blogTypes) {
         res.render('manage/createBlog', { title: 'Create Blog', blogTypes: blogTypes });
     });
 });
 
-router.post('/create', isAuthenticated, function (req, res, next) {
+router.post('/create', function (req, res, next) {
     var blog = new Blog({
         title: req.body.title,
         tags:req.body.tags,
@@ -45,12 +46,13 @@ router.post('/create', isAuthenticated, function (req, res, next) {
     res.redirect('/');
 });
 
+//博客详细
 router.get('/blogDetail/:blogId', findBlog,function (req,res,next) {
-    res.render('manage/blogDetail', { blog: req.blog });
+    res.render('manage/blogDetail', { blog: req.blog, moment: moment });
 });
 
 //修改博客
-router.get('/edit/:blogId', isAuthenticated, findBlogTypes, findBlog, function (req, res, next) {
+router.get('/edit/:blogId', findBlogTypes, findBlog, function (req, res, next) {
     res.render("manage/editBlog", { blog: req.blog, blogTypes: req.blogTypes });
 });
 
@@ -74,12 +76,12 @@ function findBlogTypes(req,res,next) {
 //db.xxx.find({}, { "[要查询的字段]": 1 })
 
 //维护博客类型
-router.get('/blogtype', isAuthenticated, function (req, res) {
+router.get('/blogtype', function (req, res) {
     BlogType.find({}).sort({name:'asc'}).exec(function(err,blogTypes) {
         res.render('manage/blogType', { title: 'BlogType', blogTypes: blogTypes,moment:moment });
     });
 });
-router.post('/createblogtype', isAuthenticated, function (req, res) {
+router.post('/createblogtype', function (req, res) {
     var blogType = new BlogType({
         name: req.body.blogtype,
         date:new Date()
@@ -87,7 +89,7 @@ router.post('/createblogtype', isAuthenticated, function (req, res) {
     blogType.save();
     res.redirect(301, '/manage/blogtype');
 });
-router.post('/deleteblogtype', isAuthenticated, function (req, res) {
+router.post('/deleteblogtype', function (req, res) {
     BlogType.findByIdAndRemove(req.body.id , function (err) {
         if (!err) {
             res.redirect(301, '/manage/blogtype');

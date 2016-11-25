@@ -5,5 +5,8 @@ block content
 	script(src='/ckeditor_4.5.8/plugins/codesnippet/lib/highlight/highlight.pack.js')
 	script.
 		hljs.initHighlightingOnLoad();
-	p=blog.title
+	h1.blogTitle=blog.title
+	.div_center
+		span=blog.author
+		span.author=moment(blog.date).format('YYYY-MM-DD hh:mm:ss')
 	div!=blog.body
