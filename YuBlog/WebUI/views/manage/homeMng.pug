@@ -1,9 +1,11 @@
 ﻿extends ../layoutMng
 
 block content
+	.buttons_wrapper
+		<a href="manage/create" class="btn btn-primary" role="button">新建博客</a>
 	.blog-type-wrapper.with-border
 		table.table
-			<caption>博客管理</caption>
+			//<caption>博客管理</caption>
 			<col width="40%" />
 			<col width="20%" />
 			<col width="10%" />
@@ -20,7 +22,7 @@ block content
 				each val,index in blogs
 					tr
 						td
-							<a href="/manage/edit/#{val._id}">#{val.title}</a>
+							<a href="/manage/blogDetail/#{val._id}">#{val.title}</a>
 						td=val.tags
 						td=val.author
 						td=moment(val.date).format('YYYY-MM-DD hh:mm:ss')

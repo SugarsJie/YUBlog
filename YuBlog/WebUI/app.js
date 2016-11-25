@@ -49,7 +49,7 @@ passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
 
 // mongoose
-mongoose.connect('mongodb://localhost/yublog');
+mongoose.connect('mongodb://192.168.14.21:27017/yublog');
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
