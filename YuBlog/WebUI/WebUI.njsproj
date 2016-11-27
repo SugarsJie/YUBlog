@@ -680,6 +680,7 @@
     <Content Include="public\stylesheets\default.css" />
     <Content Include="public\stylesheets\style.styl" />
     <Content Include="README.md" />
+    <Content Include="views\about.pug" />
     <Content Include="views\error.pug" />
     <Content Include="views\home.pug" />
     <Content Include="views\layout.pug" />

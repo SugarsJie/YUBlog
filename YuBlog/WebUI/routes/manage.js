@@ -43,7 +43,7 @@ router.post('/create', function (req, res, next) {
         blogType:req.body.blogType
     });
     blog.save();
-    res.redirect('/');
+    res.redirect('/manage');
 });
 
 //博客详细
