@@ -6,19 +6,20 @@ var moment = require("moment");
 var router = express.Router();
 
 //管理后台需要登录后才能进入
-router.use(function(req, res, next) {
-    res.locals.user = req.user;
-    req.session.returnUrl = req.originalUrl;
-    if (req.user) {
-        next();
-    } else {
-        res.redirect('/login');
-    }
+router.use(function (req, res, next) {
+    return next();
+//    res.locals.user = req.user;
+//    req.session.returnUrl = req.originalUrl;
+//    if (req.user) {
+//        next();
+//    } else {
+//        res.redirect('/login');
+//    }
 });
 
-//管理后台首页
+//管理后台博客列表
 router.get('/', function (req, res, next) {
-    Blog.find({}).sort({ date: -1 }).exec(function (err, blogs) {
+    Blog.find({ "isDeleted": false}).sort({ date: -1 }).exec(function (err, blogs) {
         res.render('manage/homeMng', { title: 'Manage-Home', blogs: blogs, moment: moment });
     });
 });
@@ -40,7 +41,8 @@ router.post('/create', function (req, res, next) {
         date: new Date(),
         hidden: req.body.publish,
         meta: {},
-        blogType:req.body.blogType
+        blogType: req.body.blogType,
+        isDeleted:false
     });
     blog.save();
     res.redirect('/manage');
@@ -52,9 +54,22 @@ router.get('/blogDetail/:blogId', findBlog,function (req,res,next) {
 });
 
 //修改博客
-router.get('/edit/:blogId', findBlogTypes, findBlog, function (req, res, next) {
+router.get('/editBlog/:blogId', findBlogTypes, findBlog, function (req, res, next) {
     res.render("manage/editBlog", { blog: req.blog, blogTypes: req.blogTypes });
 });
+
+//删除博客
+router.post('/deleteBlog', function (req, res, next) {
+    Blog.findByIdAndUpdate(req.body.blogId,
+        { $set: { isDeleted: true } },
+        function(err, doc) {
+            if (err) return res.send(500, { error: err });
+            return res.send("success");
+        });
+});
+
+
+
 
 function findBlog(req, res, next) {
     Blog.findById(req.params.blogId, function (err, blog) {

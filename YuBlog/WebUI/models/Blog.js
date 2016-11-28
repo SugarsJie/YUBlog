@@ -13,7 +13,8 @@ var Blog = new Schema({
         votes: Number,
         favs: Number
     },
-    blogType:String
+    blogType: String,
+    isDeleted: Boolean
 });
 
 module.exports = mongoose.model('Blog', Blog);

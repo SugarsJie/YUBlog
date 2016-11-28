@@ -9,8 +9,8 @@ block content
 			<col width="40%" />
 			<col width="20%" />
 			<col width="10%" />
-			<col width="20%" />
-			<col width="10%" />
+			<col width="15%" />
+			<col width="15%" />
 			thead
 				tr
 					th 标题
@@ -27,6 +27,30 @@ block content
 						td=val.author
 						td=moment(val.date).format('YYYY-MM-DD hh:mm:ss')
 						td 
-							form( action="/manage/deleteblogtype",method="post")
-								<input type='hidden' id='id' name='id' value=#{val._id} />
-								button(type='submit',class='btn btn-danger btn-xs') 删除
+							<a target="_blank" class="btn btn-primary btn-xs" role="button" href="/manage/editBlog/#{val._id}">修改</a>
+							<input name="btnDeleteBlog" type='button' class='btn btn-danger btn-xs ml5' data-id="#{val._id}" data-title="#{val.title}" value='删除'></input>
+
+	script.
+		$(function(){
+			$("input[name='btnDeleteBlog']").click(function(){
+				var title=$(this).data("title");
+				var blogId=$(this).data("id");
+				var confirmStr="博客标题："+title+"\n确认要删除该博客吗？"
+
+				if(confirm(confirmStr)==true){
+					$.ajax({
+					  method: "POST",
+					  url: "manage/deleteBlog",
+					  data: { blogId: blogId},
+					  success:function(data,txtStatus,obj){
+					      if(data=="success"){
+							location.href="/manage";
+						  }
+					  },
+					  error:function(obj,txtStatus,error){
+						alert(obj.responseText);
+					  }
+					})
+				}
+			});
+		});
