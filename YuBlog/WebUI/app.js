@@ -19,8 +19,9 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
-var routes = require('./routes/index');
-var users = require('./routes/manage');
+var index = require('./routes/index');
+var manage = require('./routes/manage');
+var file = require('./routes/file');
 
 app.set('port',"8080");
 var listener = app.listen(app.get('port'));
@@ -39,8 +40,9 @@ app.use(cookieParser());
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/manage', users);
+app.use('/', index);
+app.use('/manage', manage);
+app.use('/file',file);
 
 // passport config
 var Account = require('./models/account');

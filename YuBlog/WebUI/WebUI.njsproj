@@ -374,6 +374,7 @@
     <Compile Include="public\ckeditor_4.5.8\samples\toolbarconfigurator\lib\codemirror\show-hint.js" />
     <Compile Include="public\ckeditor_4.5.8\styles.js" />
     <Compile Include="public\jquery\jquery-1.12.3.min.js" />
+    <Compile Include="routes\file.js" />
     <Compile Include="routes\index.js" />
     <Compile Include="routes\manage.js" />
     <Compile Include="bin\www" />
@@ -682,6 +683,7 @@
     <Content Include="README.md" />
     <Content Include="views\about.pug" />
     <Content Include="views\error.pug" />
+    <Content Include="views\file\fileUpload.pug" />
     <Content Include="views\home.pug" />
     <Content Include="views\layout.pug" />
     <Content Include="views\layoutMng.pug" />
@@ -815,6 +817,7 @@
     <Folder Include="public\images\" />
     <Folder Include="public\javascripts\" />
     <Folder Include="public\jquery\" />
+    <Folder Include="public\uploads\" />
     <Folder Include="public\stylesheets\" />
     <Folder Include="routes\" />
     <Folder Include="typings\" />
@@ -839,6 +842,7 @@
     <Folder Include="typings\globals\stylus\" />
     <Folder Include="views\" />
     <Folder Include="views\manage\" />
+    <Folder Include="views\file\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="typings\globals\bcrypt-nodejs\index.d.ts" />
