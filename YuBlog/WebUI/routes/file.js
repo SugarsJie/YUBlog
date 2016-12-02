@@ -35,17 +35,20 @@ var upload = multer({
     fileFilter: fileFilter
 });
 
-
-
-router.get('/upload', function(req,res,next) {
-    res.render('file/fileUpload');
-});
+//测试用
+//router.get('/upload', function(req,res,next) {
+//    res.render('file/fileUpload');
+//});
 
 router.post('/upload', upload.any(), function (req, res, next) {
-    res.send({ "isSuccess": true, "url": "uploads/"+req.files[0].filename });
+    var fileName = req.files[0].filename;
+    var result = {
+        "uploaded": 1,
+        "fileName": fileName,
+        "url": "/uploads/" + fileName
+    }
+
+    res.send(result);
 });
-
-
-
 
 module.exports = router;

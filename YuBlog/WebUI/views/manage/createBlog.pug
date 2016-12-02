@@ -1,7 +1,7 @@
 ﻿extends ../layoutMng
 
 block content
-	script(src='/ckeditor_4.5.8/ckeditor.js')
+	script(src='/ckeditor_4.6.0/ckeditor.js')
 	.create-blog-warpper
 		form( action="/manage/create",method="post")
 			.form-group
@@ -22,7 +22,7 @@ block content
 				textarea(name='editorBlog',id='editorBlog')
 				script.
 					var config = {
-						extraPlugins: 'codesnippet',
+						extraPlugins: 'codesnippet,uploadimage',
 						codeSnippet_theme: 'tomorrow-night',
 						height:'600px'
 					};
