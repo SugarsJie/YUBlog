@@ -39,7 +39,7 @@ router.post('/create', function (req, res, next) {
         body: req.body.editorBlog,
         comments: [],
         date: new Date(),
-        hidden: req.body.publish,
+        hidden: req.body.publish == false,
         meta: {},
         blogType: req.body.blogType,
         isDeleted:false

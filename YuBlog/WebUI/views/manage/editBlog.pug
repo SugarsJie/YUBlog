@@ -15,6 +15,17 @@ block content
 				select.form-control#blogType(name='blogType')
 					each val,index in blogTypes
 						option(value=val.name,selected=val.id)=val.name
-
+			.checkbox
+				<label><input type="checkbox" id='publish' name='publish' checked="#{blog.hidden}">发布</label>
+			.form-group
+				<label for="editorBlog">博客正文</label>
+				textarea(name='editorBlog',id='editorBlog')=blog.body
+				script.
+					var config = {
+						extraPlugins: 'codesnippet,uploadimage',
+						codeSnippet_theme: 'tomorrow-night',
+						height:'600px'
+					};
+					CKEDITOR.replace( 'editorBlog', config );
 				
-			button(type='submit',class='btn btn-default w100') 提交
+			button(type='submit',class='btn btn-default w100') 保存
