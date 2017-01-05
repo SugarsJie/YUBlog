@@ -11,4 +11,6 @@ router.get('/:year/:month/:day/:slug', blogService.findBlog, function (req, res,
     res.render('manage/blogDetail', { blog: req.blog, moment: moment });
 });
 
+router.get(''
+
 module.exports = router;
