@@ -38,7 +38,7 @@ block content
 							li
 								h3=moment(val.date).format('YYYY-MM-DD')
 								p
-									a(href='blog/'+moment(val.date).format('/YYYY/MM/DD/')+val.slug)=val.title
+									a(href='blog'+moment(val.date).format('/YYYY/MM/DD/')+val.slug)=val.title
 		</div>
 	</div>
 

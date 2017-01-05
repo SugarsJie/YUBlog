@@ -1076,6 +1076,7 @@
     <Content Include="public\stylesheets\style.styl" />
     <Content Include="README.md" />
     <Content Include="views\about.pug" />
+    <Content Include="views\blog\blogList.pug" />
     <Content Include="views\error.pug" />
     <Content Include="views\file\fileUpload.pug" />
     <Content Include="views\home.pug" />
@@ -1345,6 +1346,7 @@
     <Folder Include="views\" />
     <Folder Include="views\manage\" />
     <Folder Include="views\file\" />
+    <Folder Include="views\blog\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="typings\globals\bcrypt-nodejs\index.d.ts" />

@@ -1,4 +1,6 @@
 ﻿var mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
+
 var Schema = mongoose.Schema;
 
 var Blog = new Schema({
@@ -17,5 +19,7 @@ var Blog = new Schema({
     isDeleted: Boolean,
     slug:String
 });
+
+Blog.plugin(mongoosePaginate);
 
 module.exports = mongoose.model('Blog', Blog);
