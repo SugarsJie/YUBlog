@@ -6,14 +6,16 @@ block content
 	.blog-type-wrapper.with-border
 		table.table
 			//<caption>博客管理</caption>
-			<col width="40%" />
-			<col width="20%" />
+			<col width="30%" />
+			<col width="15%" />
+			<col width="15%" />
 			<col width="10%" />
 			<col width="15%" />
 			<col width="15%" />
 			thead
 				tr
 					th 标题
+					th SLUG
 					th 标签
 					th 作者
 					th 时间
@@ -22,12 +24,13 @@ block content
 				each val,index in blogs
 					tr
 						td
-							<a href="/manage/blogDetail/#{val._id}">#{val.title}</a>
+							<a href="/manage/blogDetail/#{val.slug}">#{val.title}</a>
+						td=val.slug
 						td=val.tags
 						td=val.author
 						td=moment(val.date).format('YYYY-MM-DD hh:mm:ss')
 						td 
-							<a target="_blank" class="btn btn-primary btn-xs" role="button" href="/manage/editBlog/#{val._id}">修改</a>
+							<a target="_blank" class="btn btn-primary btn-xs" role="button" href="/manage/editBlog/#{val.slug}">修改</a>
 							<input name="btnDeleteBlog" type='button' class='btn btn-danger btn-xs ml5' data-id="#{val._id}" data-title="#{val.title}" value='删除'></input>
 
 	script.

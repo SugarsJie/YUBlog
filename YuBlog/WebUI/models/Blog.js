@@ -14,7 +14,8 @@ var Blog = new Schema({
         favs: Number
     },
     blogType: String,
-    isDeleted: Boolean
+    isDeleted: Boolean,
+    slug:String
 });
 
 module.exports = mongoose.model('Blog', Blog);

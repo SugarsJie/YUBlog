@@ -3,18 +3,17 @@ var Account = require('../models/account');
 var Blog = require('../models/blog');
 var passport = require('passport');
 var moment = require("moment");
+var blogService = require('../service/blogService');
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', function (req, res) {
+router.get('/', blogService.findRecentUpdateBlogs, function (req, res) {
 //    Account.register(new Account({ username: "admin" }), "123456", function (err, account) {
 //        if (err) {
 //            return res.render('/', { account: account });
 //        }
 //    });
-    Blog.find({}).sort({ _id: 'asc' }).exec(function (err, blogs) {
-        res.render('home', { title: 'YuBlog', blogs: blogs, moment: moment });
-    });
+    res.render('home', { title: 'YuBlog', blogs: req.blogs, moment: moment });
 });
 
 //登录

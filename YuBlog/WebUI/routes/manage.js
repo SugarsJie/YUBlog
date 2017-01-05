@@ -3,6 +3,7 @@ var passport = require('passport');
 var Blog = require('../models/blog');
 var BlogType = require('../models/blogtype');
 var moment = require("moment");
+var blogService = require('../service/blogService');
 var router = express.Router();
 
 //管理后台需要登录后才能进入
@@ -42,19 +43,20 @@ router.post('/create', function (req, res, next) {
         hidden: req.body.publish == false,
         meta: {},
         blogType: req.body.blogType,
-        isDeleted:false
+        isDeleted: false,
+        slug: req.body.slug
     });
     blog.save();
     res.redirect('/manage');
 });
 
 //博客详细
-router.get('/blogDetail/:blogId', findBlog,function (req,res,next) {
+router.get('/blogDetail/:slug', blogService.findBlog,function (req,res,next) {
     res.render('manage/blogDetail', { blog: req.blog, moment: moment });
 });
 
 //修改博客
-router.get('/editBlog/:blogId', findBlogTypes, findBlog, function (req, res, next) {
+router.get('/editBlog/:slug', blogService.findBlogTypes, blogService.findBlog, function (req, res, next) {
     res.render("manage/editBlog", { blog: req.blog, blogTypes: req.blogTypes });
 });
 
@@ -67,23 +69,6 @@ router.post('/deleteBlog', function (req, res, next) {
             return res.send("success");
         });
 });
-
-
-
-
-function findBlog(req, res, next) {
-    Blog.findById(req.params.blogId, function (err, blog) {
-        req.blog = blog;
-        next();
-    });
-}
-
-function findBlogTypes(req,res,next) {
-    BlogType.find({}).sort({ name: 'asc' }).exec(function (err, blogTypes) {
-        req.blogTypes = blogTypes;
-        next();
-    });
-}
 
 //like查询
 //db.users.find({ "name": /m/ })

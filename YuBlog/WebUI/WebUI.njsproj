@@ -540,10 +540,12 @@
     <Compile Include="public\ckeditor_4.6.0\samples\toolbarconfigurator\lib\codemirror\show-hint.js" />
     <Compile Include="public\ckeditor_4.6.0\styles.js" />
     <Compile Include="public\jquery\jquery-1.12.3.min.js" />
+    <Compile Include="routes\blog.js" />
     <Compile Include="routes\file.js" />
     <Compile Include="routes\index.js" />
     <Compile Include="routes\manage.js" />
     <Compile Include="bin\www" />
+    <Compile Include="service\blogService.js" />
     <Content Include="package.json" />
     <Content Include="public\bootstrap-3.3.6\css\bootstrap-theme.css" />
     <Content Include="public\bootstrap-3.3.6\css\bootstrap-theme.css.map" />
@@ -1094,6 +1096,7 @@
     <Folder Include="public\bootstrap-3.3.6\css\" />
     <Folder Include="public\bootstrap-3.3.6\fonts\" />
     <Folder Include="public\bootstrap-3.3.6\js\" />
+    <Folder Include="public\ckeditor_4.5.8\" />
     <Folder Include="public\ckeditor_4.5.8\lang\" />
     <Folder Include="public\ckeditor_4.5.8\plugins\" />
     <Folder Include="public\ckeditor_4.5.8\plugins\a11yhelp\" />
@@ -1318,6 +1321,7 @@
     <Folder Include="public\uploads\" />
     <Folder Include="public\stylesheets\" />
     <Folder Include="routes\" />
+    <Folder Include="service\" />
     <Folder Include="typings\" />
     <Folder Include="typings\globals\" />
     <Folder Include="typings\globals\bcrypt-nodejs\" />

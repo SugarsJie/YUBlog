@@ -30,46 +30,15 @@ block content
 			</div>
 		</div>
 		<div id="sidebar">
-			<div id="login" class="boxed">
-				<h2 class="title">Client Account</h2>
-				<div class="content">
-					<form id="form1" method="post" action="#">
-						<fieldset>
-							<legend>Sign-In</legend>
-							<label for="inputtext1">Client ID:</label>
-							<input id="inputtext1" type="text" name="inputtext1" value="" />
-							<label for="inputtext2">Password:</label>
-							<input id="inputtext2" type="password" name="inputtext2" value="" />
-							<input id="inputsubmit1" type="submit" name="inputsubmit1" value="Sign In" />
-							<p><a href="#">Forgot your password?</a></p>
-						</fieldset>
-					</form>
-				</div>
-			</div>
 			#updates.boxed
-				<h2 class="title">Recent Updates</h2>
+				<h2 class="title">最近更新</h2>
 				.content
 					ul
 						each val,index in blogs
 							li
 								h3=moment(val.date).format('YYYY-MM-DD')
 								p
-									a(href="")=val.title
-		//
-			<div id="partners" class="boxed">
-				<h2 class="title">Partners</h2>
-				<div class="content">
-					<ul>
-						<li><a href="#">Donec Dictum Metus</a></li>
-						<li><a href="#">Etiam Rhoncus Volutpat</a></li>
-						<li><a href="#">Integer Gravida Nibh</a></li>
-						<li><a href="#">Maecenas Luctus Lectus</a></li>
-						<li><a href="#">Mauris Vulputate Dolor</a></li>
-						<li><a href="#">Nulla Luctus Eleifend</a></li>
-						<li><a href="#">Posuere Augue Sit Nisl</a></li>
-					</ul>
-				</div>
-			</div>
+									a(href='blog/'+moment(val.date).format('/YYYY/MM/DD/')+val.slug)=val.title
 		</div>
 	</div>
 
