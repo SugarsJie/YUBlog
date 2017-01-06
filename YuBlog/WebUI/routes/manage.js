@@ -95,7 +95,7 @@ function getQueryToDisplay(req) {
 //创建博客
 router.get('/create', function (req, res, next) {
     BlogType.find({}).sort({ name: 'asc' }).exec(function (err, blogTypes) {
-        res.render('manage/editBlog', { title: 'Create Blog',blog:new Blog(), blogTypes: blogTypes });
+        res.render('manage/editBlog', { title: 'Create Blog', blog: new Blog(), blogTypes: blogTypes });
     });
 });
 
@@ -107,10 +107,10 @@ router.post('/createBlog', function (req, res, next) {
         body: req.body.editorBlog,
         comments: [],
         date: new Date(),
-        hidden: req.body.publish!='on',
+        hidden: req.body.publish !=='on',
         meta: {},
         blogType: req.body.blogType,
-        isDeleted: req.body.isDeleted='on',
+        isDeleted: req.body.isDeleted==='on',
         slug: req.body.slug
     });
     blog.save();
@@ -136,10 +136,10 @@ router.post('/editBlog', function (req, res, next) {
             body: req.body.editorBlog,
             comments: [],
             modifyDate: new Date(),
-            hidden: req.body.publish != 'on',
+            hidden: req.body.publish !== 'on',
             meta: {},
             blogType: req.body.blogType,
-            isDeleted: req.body.isDeleted = 'on',
+            isDeleted: req.body.isDeleted === 'on',
             slug: req.body.slug
         } },
         function (err, doc) {
@@ -159,8 +159,9 @@ router.post('/deleteBlog', function (req, res, next) {
 });
 
 //判断slug是否存在
-router.get('/isSlugExist', function(req, res, next) {
-    Blog.count({ slug:req.query.slug }, function (err, count) {
+router.get('/isSlugExist', function (req, res, next) {
+    Blog.count({ $and: [{ slug: req.query.slug }, { _id: { $ne: req.query.id } }] }, function (err, count) {
+        if (err) return res.send(500, { error: err });
         if (count > 0) {
             res.json({ isExists: true });
         } else {

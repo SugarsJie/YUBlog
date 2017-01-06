@@ -46,8 +46,8 @@ block content
 				var $slut=$(this);
 				$.ajax({
 					method: "get",
-					url: "isSlugExist",
-					data: { slug: $slut.val()},
+					url: "/manage/isSlugExist",
+					data: { slug: $slut.val(),id:$("#blogId").val()},
 					success:function(data,txtStatus,obj){
 						if(txtStatus=="success"){
 							if(data.isExists){
@@ -62,6 +62,6 @@ block content
 					error:function(obj,txtStatus,error){
 						alert(obj.responseText);
 					}
-					})
+				})
 			});
 		});
