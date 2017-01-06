@@ -80,3 +80,7 @@ div.div_center {
 .form-inline label {
   margin-right: 5px !important;
 }
+.blog-type-wrapper.with-border th a {
+  color: #808080;
+  font-size: 14px;
+}
