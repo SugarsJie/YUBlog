@@ -3,7 +3,7 @@ body {
 }
 div.content-wrapper {
   margin: auto;
-  width: 1024px;
+  width: 1200px;
 }
 div.with-border {
   border: 1px solid #ccc;
@@ -26,7 +26,7 @@ div.create-blog-warpper {
 }
 div.blog-type-wrapper {
   border-radius: 5px;
-  width: 1000px;
+  width: 1200px;
   padding: 20px 20px 0 20px;
   margin-top: 10px;
 }
@@ -62,5 +62,15 @@ div.div_center {
   margin-right: 30px;
 }
 .ml5 {
-  margin-left: 5px;
+  margin-left: 5px !important;
+}
+.ml3 {
+  margin-left: 3px !important;
+}
+.deleted {
+  color: #f00;
+}
+.label-wrapper {
+  margin-right: 30px;
+  padding: 0;
 }

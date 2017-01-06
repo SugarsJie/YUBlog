@@ -16,12 +16,13 @@ function findBlogTypes(req, res, next) {
     });
 }
 
-function findRecentUpdateBlogs(req,res,next) {
-    Blog.find({ "isDeleted": false }).sort({ date: 'desc' }).limit(20).exec(function (err, blogs) {
+function findRecentUpdateBlogs(req, res, next) {
+    Blog.find({ "isDeleted": false, hidden: false }).sort({ date: 'desc' }).limit(3).exec(function (err, blogs) {
         req.blogs = blogs;
         next();
     });
 }
+
 
 
 

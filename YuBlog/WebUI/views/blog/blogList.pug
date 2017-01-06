@@ -7,19 +7,4 @@ block content
 				p
 					a(href='')=val.title
 
-	if paginate.hasPreviousPages || paginate.hasNextPages(pageCount)
-		.navigation.well-sm#pagination
-			ul.pager
-				if paginate.hasPreviousPages
-					li.previous
-						a(href=paginate.href(true)).prev
-							i.fa.fa-arrow-circle-left
-							|  前一页
-				if pages
-					each page in pages
-						a.btn.btn-default(href=page.url)= page.number
-				if paginate.hasNextPages(pageCount)
-					li.next
-						a(href=paginate.href()).next
-							| 下一页&nbsp;
-							i.fa.fa-arrow-circle-right
+	include ../share/_paginate.pug

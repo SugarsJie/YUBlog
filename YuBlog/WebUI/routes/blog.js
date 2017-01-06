@@ -14,8 +14,7 @@ router.get('/:year/:month/:day/:slug', blogService.findBlog, function (req, res,
 router.get('/list', function (req, res, next) {
     var currentPage = req.query.page ? req.query.page : 1;
     var pageSize = req.query.limit ? req.query.limit : 2;
-    Blog.paginate({ 'isDeleted': false }, { page: currentPage, limit: pageSize }, function (err, result) {
-        var x = paginate.getArrayPages(req)(3, result.pages, currentPage);
+    Blog.paginate({ 'isDeleted': false, hidden: false }, { page: currentPage, limit: pageSize }, function (err, result) {
         res.render('blog/blogList', {
             blogs: result.docs,
             pageCount: result.pages,
@@ -23,11 +22,5 @@ router.get('/list', function (req, res, next) {
         });
     });
 });
-
-//router.get('/list', function (req, res, next) {
-//    Blog.paginate({ 'isDeleted': false }, { page: 1, limit: 2 }, function (err, result) {
-//        res.render('blog/blogList', { blogs: result.docs });
-//    });
-//});
 
 module.exports = router;

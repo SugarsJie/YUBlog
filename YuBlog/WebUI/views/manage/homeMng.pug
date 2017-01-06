@@ -1,37 +1,98 @@
 ﻿extends ../layoutMng
 
 block content
+	form(class='form-inline',action='/manage',method="get")
+			.form-group
+				<label for="title">博客标题</label>
+				input(type="text",class="form-control",id="title",name='title',placeholder="标题" value=query.title?query.title:"")
+			.form-group
+				<label for="title">关键字</label>
+				input(type="text",class="form-control",id="tags",name='tags',placeholder="关键字" value=query.tags?query.tags:"")
+			.form-group
+				<label for='blogType'>博客类型</label>
+				select.form-control#blogType(name='blogType')
+					each val,index in blogTypes
+						option(value=val.name selected=query.blogType==val.name)=val.name
+
+			button(type='submit',class='btn btn-primary w100') 查询
+			
 	.buttons_wrapper
 		<a href="manage/create" class="btn btn-primary" role="button">新建博客</a>
 	.blog-type-wrapper.with-border
 		table.table
 			//<caption>博客管理</caption>
-			<col width="30%" />
-			<col width="15%" />
-			<col width="15%" />
+			<col width="20%" />
+			<col width="11%" />
+			<col width="11%" />
+			<col width="6%" />
+			<col width="6%" />
+			<col width="6%" />
+			<col width="6%" />
+			<col width="12%" />
+			<col width="12%" />
 			<col width="10%" />
-			<col width="15%" />
-			<col width="15%" />
 			thead
 				tr
-					th 标题
-					th SLUG
-					th 标签
-					th 作者
-					th 时间
+					th 
+						a(href=paginate.href({ sort: 'title',order:order })) 标题
+						if sort=='title'
+							include ../share/_orderImg.pug
+					th 
+						a(href=paginate.href({ sort: 'slug',order:order  })) SLUG
+						if sort=='slug'
+							include ../share/_orderImg.pug
+					th 
+						a(href=paginate.href({ sort: 'tags',order:order  })) 标签
+						if sort=='tags'
+							include ../share/_orderImg.pug
+					th 
+						a(href=paginate.href({ sort: 'blogType',order:order  })) 分类
+						if sort=='blogType'
+							include ../share/_orderImg.pug
+					th 
+						a(href=paginate.href({ sort: 'hidden',order:order  })) 发布
+						if sort=='hidden'
+							include ../share/_orderImg.pug
+					th 
+						a(href=paginate.href({ sort: 'isDeleted',order:order  })) 删除
+						if sort=='isDeleted'
+							include ../share/_orderImg.pug
+					th 
+						a(href=paginate.href({ sort: 'author',order:order  })) 作者
+						if sort=='author'
+							include ../share/_orderImg.pug
+					th 
+						a(href=paginate.href({ sort: 'date',order:order  })) 创建时间
+						if sort=='date'
+							include ../share/_orderImg.pug
+					th 
+						a(href=paginate.href({ sort: 'modifyDate',order:order  })) 修改时间
+						if sort=='modifyDate'
+							include ../share/_orderImg.pug
 					th 操作
 			if blogs
 				each val,index in blogs
-					tr
+					tr(class=val.isDeleted ? 'deleted' : '')
 						td
 							<a href="/manage/blogDetail/#{val.slug}">#{val.title}</a>
 						td=val.slug
 						td=val.tags
+						td=val.blogType
+						if val.hidden
+							td='否'
+						else
+							td='是'
+						if val.isDeleted
+							td='是'
+						else
+							td='否'
 						td=val.author
 						td=moment(val.date).format('YYYY-MM-DD hh:mm:ss')
+						td=moment(val.modifyDate).format('YYYY-MM-DD hh:mm:ss')
 						td 
 							<a target="_blank" class="btn btn-primary btn-xs" role="button" href="/manage/editBlog/#{val.slug}">修改</a>
 							<input name="btnDeleteBlog" type='button' class='btn btn-danger btn-xs ml5' data-id="#{val._id}" data-title="#{val.title}" value='删除'></input>
+	include ../share/_paginate.pug
 
 	script.
 		$(function(){

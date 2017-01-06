@@ -1084,10 +1084,11 @@
     <Content Include="views\layoutMng.pug" />
     <Content Include="views\manage\blogDetail.pug" />
     <Content Include="views\manage\blogType.pug" />
-    <Content Include="views\manage\createBlog.pug" />
     <Content Include="views\manage\editBlog.pug" />
     <Content Include="views\manage\homeMng.pug" />
     <Content Include="views\login.pug" />
+    <Content Include="views\share\_orderImg.pug" />
+    <Content Include="views\share\_paginate.pug" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\" />
@@ -1334,6 +1335,7 @@
     <Folder Include="typings\globals\express\" />
     <Folder Include="typings\globals\method-override\" />
     <Folder Include="typings\globals\moment\" />
+    <Folder Include="typings\globals\mongoose-paginate\" />
     <Folder Include="typings\globals\mongoose\" />
     <Folder Include="typings\globals\morgan\" />
     <Folder Include="typings\globals\node\" />
@@ -1347,6 +1349,7 @@
     <Folder Include="views\manage\" />
     <Folder Include="views\file\" />
     <Folder Include="views\blog\" />
+    <Folder Include="views\share\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="typings\globals\bcrypt-nodejs\index.d.ts" />
@@ -1358,6 +1361,7 @@
     <TypeScriptCompile Include="typings\globals\express\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\method-override\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\moment\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\mongoose-paginate\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\mongoose\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\morgan\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\node\index.d.ts" />

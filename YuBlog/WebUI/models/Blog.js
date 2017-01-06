@@ -10,6 +10,7 @@ var Blog = new Schema({
     body: String,
     comments: [{ body: String, date: Date }],
     date: { type: Date, default: Date.now },
+    modifyDate:{ type: Date, default: Date.now },
     hidden: Boolean,
     meta: {
         votes: Number,
