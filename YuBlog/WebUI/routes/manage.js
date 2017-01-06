@@ -32,13 +32,18 @@ router.get('/', blogService.findBlogTypes,function (req, res, next) {
     var query = getQuery(req);
     var queryToDisplay = getQueryToDisplay(req);
 
+    var x = req.blogTypes;
+    var defaultBlogType = new BlogType();
+    defaultBlogType.name = '全部';
+    x.splice(0, 0, defaultBlogType);
+
     Blog.paginate(query, { page: currentPage, limit: pageSize, sort: orderStr }, function (err, result) {
         res.render('manage/homeMng', {
             title: 'Manage-Home',
             order: order * -1,
             sort: sort,
             query: queryToDisplay,
-            blogTypes: req.blogTypes,
+            blogTypes: x,
             moment: moment,
             blogs: result.docs,
             pageCount: result.pages,
@@ -58,6 +63,12 @@ function getQuery(req) {
     if (req.query.blogType) {
         query.blogType = req.query.blogType;
     }
+    if (req.query.hidden == 'on') {
+        query.hidden = false;
+    }
+    if (req.query.isDeleted=='on') {
+        query.isDeleted = true;
+    }
     return query;
 }
 
@@ -71,6 +82,12 @@ function getQueryToDisplay(req) {
     }
     if (req.query.blogType) {
         query.blogType = req.query.blogType;
+    }
+    if (req.query.hidden) {
+        query.hidden = false;
+    }
+    if (req.query.isDeleted) {
+        query.isDeleted = true;
     }
     return query;
 }

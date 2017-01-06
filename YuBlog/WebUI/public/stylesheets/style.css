@@ -67,10 +67,16 @@ div.div_center {
 .ml3 {
   margin-left: 3px !important;
 }
+.ml20 {
+  margin-left: 20px !important;
+}
 .deleted {
   color: #f00;
 }
 .label-wrapper {
   margin-right: 30px;
   padding: 0;
+}
+.form-inline label {
+  margin-right: 5px !important;
 }

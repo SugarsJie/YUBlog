@@ -1,23 +1,37 @@
 ﻿extends ../layoutMng
 
 block content
-	form(class='form-inline',action='/manage',method="get")
-			.form-group
-				<label for="title">博客标题</label>
-				input(type="text",class="form-control",id="title",name='title',placeholder="标题" value=query.title?query.title:"")
-			.form-group
-				<label for="title">关键字</label>
-				input(type="text",class="form-control",id="tags",name='tags',placeholder="关键字" value=query.tags?query.tags:"")
-			.form-group
-				<label for='blogType'>博客类型</label>
-				select.form-control#blogType(name='blogType')
-					each val,index in blogTypes
-						option(value=val.name selected=query.blogType==val.name)=val.name
 
-			button(type='submit',class='btn btn-primary w100') 查询
-			
-	.buttons_wrapper
-		<a href="manage/create" class="btn btn-primary" role="button">新建博客</a>
+	form(class='form-inline',action='/manage',method="get")
+		.form-group
+			<label for="title">博客标题</label>
+			input(type="text",class="form-control",id="title",name='title',placeholder="标题" value=query.title?query.title:"")
+		.form-group
+			<label for="title">关键字</label>
+			input(type="text",class="form-control",id="tags",name='tags',placeholder="关键字" value=query.tags?query.tags:"")
+		.form-group
+			<label for='blogType'>博客类型</label>
+			select.form-control#blogType(name='blogType')
+				each val,index in blogTypes
+					option(value=val.name selected=query.blogType==val.name)=val.name
+
+			<label for='hidden'>发布</label>
+				<select id='hidden' name='hidden' class="form-control">
+					option(value='0' selected=query.hidden) 全部
+					option(value='1' selected=query.hidden) 已发布
+					option(value='2' selected=query.hidden) 未发布
+				</select>
+
+			<label for='hidden'>删除</label>
+				<select id='hidden' name='hidden' class="form-control">
+					option(value='0' selected=query.hidden) 全部
+					option(value='1' selected=query.hidden) 已删除
+					option(value='2' selected=query.hidden) 未删除
+				</select>
+		
+		button(type='submit',class='btn btn-primary w100 ml20') 查询
+		<a target="_blank" href="manage/create" class="btn btn-primary w100 ml20" role="button">新建博客</a>
+
 	.blog-type-wrapper.with-border
 		table.table
 			//<caption>博客管理</caption>
