@@ -14,18 +14,18 @@ block content
 				each val,index in blogTypes
 					option(value=val.name selected=query.blogType==val.name)=val.name
 
-			<label for='hidden'>发布</label>
+			<label for='publish'>发布</label>
 				<select id='hidden' name='hidden' class="form-control">
-					option(value='0' selected=query.hidden) 全部
-					option(value='1' selected=query.hidden) 已发布
-					option(value='2' selected=query.hidden) 未发布
+					option(value='0' selected=query.hidden=='0') 全部
+					option(value='1' selected=query.hidden=='1') 已发布
+					option(value='2' selected=query.hidden=='2') 未发布
 				</select>
 
-			<label for='hidden'>删除</label>
-				<select id='hidden' name='hidden' class="form-control">
-					option(value='0' selected=query.hidden) 全部
-					option(value='1' selected=query.hidden) 已删除
-					option(value='2' selected=query.hidden) 未删除
+			<label for='isDeleted'>删除</label>
+				<select id='isDeleted' name='isDeleted' class="form-control">
+					option(value='0' selected=query.isDeleted=='0') 全部
+					option(value='1' selected=query.isDeleted=='1') 已删除
+					option(value='2' selected=query.isDeleted=='2') 未删除
 				</select>
 		
 		button(type='submit',class='btn btn-primary w100 ml20') 查询

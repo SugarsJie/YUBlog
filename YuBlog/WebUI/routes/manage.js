@@ -31,7 +31,7 @@ router.get('/', blogService.findBlogTypes,function (req, res, next) {
     var orderStr = orderPrefix + sort;
     var query = getQuery(req);
     var queryToDisplay = getQueryToDisplay(req);
-
+    
     var x = req.blogTypes;
     var defaultBlogType = new BlogType();
     defaultBlogType.name = '全部';
@@ -60,15 +60,21 @@ function getQuery(req) {
     if (req.query.tags) {
         query.tags = new RegExp('.*' + req.query.tags + '.*', "i");
     }
-    if (req.query.blogType) {
+    if (req.query.blogType && req.query.blogType !=="全部") {
         query.blogType = req.query.blogType;
     }
-    if (req.query.hidden == 'on') {
+    if (req.query.hidden === '1') {
         query.hidden = false;
-    }
-    if (req.query.isDeleted=='on') {
+    } else if (req.query.hidden === '2') {
+        query.hidden = true;
+    } 
+
+    if (req.query.isDeleted ==='1') {
         query.isDeleted = true;
+    } else if (req.query.isDeleted === '2') {
+        query.isDeleted = false;
     }
+
     return query;
 }
 
@@ -80,15 +86,10 @@ function getQueryToDisplay(req) {
     if (req.query.tags) {
         query.tags = req.query.tags;
     }
-    if (req.query.blogType) {
-        query.blogType = req.query.blogType;
-    }
-    if (req.query.hidden) {
-        query.hidden = false;
-    }
-    if (req.query.isDeleted) {
-        query.isDeleted = true;
-    }
+
+    query.blogType = req.query.blogType ? req.query.blogType:"全部";
+    query.hidden = req.query.hidden ? req.query.hidden:"0";
+    query.isDeleted = req.query.isDeleted ? req.query.isDeleted : "0";
     return query;
 }
 
