@@ -23,11 +23,30 @@ function findRecentUpdateBlogs(req, res, next) {
     });
 }
 
-
+function findBlogTypeCount(req, res, next) {
+    Blog.aggregate([
+        {
+            $match: {
+                isDeleted: false,
+                hidden:false
+            }
+        },
+        {
+            $group: {
+                _id: "$blogType",
+                count: { $sum: 1 }
+            }
+        }
+    ], function (err, result) {
+        req.blogTypeCount = result;
+        next();
+    });
+}
 
 
 module.exports = {
     findBlog: findBlog,
     findBlogTypes: findBlogTypes,
-    findRecentUpdateBlogs: findRecentUpdateBlogs
+    findRecentUpdateBlogs: findRecentUpdateBlogs,
+    findBlogTypeCount: findBlogTypeCount
 };

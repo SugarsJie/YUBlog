@@ -42,14 +42,12 @@ block content
 		</div>
 		<div id="sidebar">
 			#updates.boxed
-				<h2 class="title">最近更新</h2>
+				<h2 class="title">文章分类</h2>
 				.content
 					ul
-						each val,index in blogs
+						each val,index in blogTypeCount
 							li
-								h3=moment(val.date).format('YYYY-MM-DD')
-								p
-									a(href='blog'+moment(val.date).format('/YYYY/MM/DD/')+val.slug)=val.title
+								a(href='')=val._id + "（" +val.count+"）"
 		</div>
 	</div>
 
