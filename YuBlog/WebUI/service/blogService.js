@@ -23,6 +23,10 @@ function findRecentUpdateBlogs(req, res, next) {
     });
 }
 
+/*将博客按照类型分组计数
+ *只查询未隐藏，未删除的博客
+ *分组结果按照博客类型排序
+ */
 function findBlogTypeCount(req, res, next) {
     Blog.aggregate([
         {
@@ -35,6 +39,11 @@ function findBlogTypeCount(req, res, next) {
             $group: {
                 _id: "$blogType",
                 count: { $sum: 1 }
+            }
+        },
+        {
+            $sort: {
+                _id:1
             }
         }
     ], function (err, result) {
