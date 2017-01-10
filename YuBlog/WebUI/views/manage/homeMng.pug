@@ -33,9 +33,10 @@ block content
 
 	.blog-type-wrapper.with-border
 		table.table
-			<col width="20%" />
-			<col width="11%" />
-			<col width="11%" />
+			<col width="4%" />
+			<col width="18%" />
+			<col width="10%" />
+			<col width="10%" />
 			<col width="6%" />
 			<col width="6%" />
 			<col width="6%" />
@@ -45,6 +46,7 @@ block content
 			<col width="10%" />
 			thead
 				tr
+					th 序号
 					th 
 						a(href=paginate.href({ sort: 'title',order:order })) 标题
 						if sort=='title'
@@ -84,9 +86,10 @@ block content
 					th 操作
 			if blogs
 				each val,index in blogs
-					tr(class=val.isDeleted ? 'deleted' : '')
+					tr
+						td=val._doc.orderNumber
 						td
-							<a href="/manage/blogDetail/#{val.slug}">#{val.title}</a>
+							a(href="/manage/blogDetail/"+val.slug class=val.isDeleted ? 'deleted' : 'color-grey')=val.title
 						td=val.slug
 						td=val.tags
 						td=val.blogType

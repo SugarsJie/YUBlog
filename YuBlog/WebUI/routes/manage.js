@@ -45,12 +45,20 @@ router.get('/', blogService.findBlogTypes,function (req, res, next) {
             query: queryToDisplay,
             blogTypes: x,
             moment: moment,
-            blogs: result.docs,
+            blogs: addOrderNumber(result.docs, currentPage, pageSize),
             pageCount: result.pages,
             pages: paginate.getArrayPages(req)(2, result.pages, currentPage)
         });
     });
 });
+
+function addOrderNumber(blogs, currentPage, pageSize) {
+    var orderStart = currentPage * pageSize - pageSize + 1;
+    for (var i = 0; i < blogs.length; i++) {
+        blogs[i]._doc.orderNumber = orderStart++;
+    }
+    return blogs;
+}
 
 function getQuery(req) {
     var query = {};

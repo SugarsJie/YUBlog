@@ -7,7 +7,7 @@ var blogService = require('../service/blogService');
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', blogService.findRecentUpdateBlogs, function (req, res) {
+router.get('/', blogService.findRecentUpdateBlogs, blogService.findBlogTypes, function (req, res) {
 //    Account.register(new Account({ username: "admin" }), "123456", function (err, account) {
 //        if (err) {
 //            return res.render('/', { account: account });

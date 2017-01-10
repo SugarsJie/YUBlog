@@ -40,6 +40,17 @@ block content
 								p
 									a(href='blog'+moment(val.date).format('/YYYY/MM/DD/')+val.slug)=val.title
 		</div>
+		<div id="sidebar">
+			#updates.boxed
+				<h2 class="title">最近更新</h2>
+				.content
+					ul
+						each val,index in blogs
+							li
+								h3=moment(val.date).format('YYYY-MM-DD')
+								p
+									a(href='blog'+moment(val.date).format('/YYYY/MM/DD/')+val.slug)=val.title
+		</div>
 	</div>
 
 	<div id="footer">
