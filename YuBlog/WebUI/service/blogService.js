@@ -1,5 +1,5 @@
 ﻿var Blog = require('../models/Blog');
-var BlogType = require('../models/Blogtype');
+var BlogType = require('../models/BlogType');
 
 
 function findBlog(req, res, next) {
