@@ -1,6 +1,6 @@
 ﻿var express = require('express');
 var Account = require('../models/Account');
-var Blog = require('../models/blog');
+var Blog = require('../models/Blog');
 var passport = require('passport');
 var moment = require("moment");
 var blogService = require('../service/blogService');

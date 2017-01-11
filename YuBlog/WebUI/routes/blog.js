@@ -1,7 +1,7 @@
 ﻿var express = require('express');
 var moment = require("moment");
 var blogService = require('../service/blogService');
-var Blog = require('../models/blog');
+var Blog = require('../models/Blog');
 var paginate = require('express-paginate');
 var router = express.Router();
 
