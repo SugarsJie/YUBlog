@@ -12,17 +12,20 @@ router.get('/',
     blogService.findBlogTypes,
     blogService.findBlogTypeCount,
     function (req, res) {
-//    Account.register(new Account({ username: "admin" }), "123456", function (err, account) {
-//        if (err) {
-//            return res.render('/', { account: account });
-//        }
-//    });
         res.render('home', {
             title: 'YuBlog',
             blogs: req.blogs,
             blogTypeCount: req.blogTypeCount,
             moment: moment
         });
+    });
+
+router.get('/register', function(req,res) {
+    Account.register(new Account({ username: "yzw" }), "Village9527", function (err, account) {
+        if (err) {
+            return res.render('/', { account: account });
+        }
+    });
 });
 
 //登录

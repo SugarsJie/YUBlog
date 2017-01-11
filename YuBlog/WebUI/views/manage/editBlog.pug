@@ -17,13 +17,17 @@ block content
 				<label for='blogType'>博客类型</label>
 				select.form-control#blogType(name='blogType')
 					each val,index in blogTypes
-						option(value=val.name,selected=val.id)=val.name
+						option(value=val.name,selected=val.name===blog.blogType)=val.name
 			.checkbox
 				label.label-wrapper 发布
 					input(type='checkbox',id='publicsh',name='publish',class='ml5',checked=blog.hidden==false)
 				label.label-wrapper 删除
 					input(type='checkbox',id='isDeleted',name='isDeleted',class='ml5',checked=blog.isDeleted)
-				
+
+			.form-group
+				<label for="tags">博客摘要</label>
+				<textarea row="10" class="form-control h90" id="summary" name='summary' placeholder="博客摘要">#{blog.summary}</textarea>
+
 			.form-group
 				<label for="editorBlog">博客正文</label>
 				textarea(name='editorBlog',id='editorBlog')=blog.body
@@ -40,7 +44,10 @@ block content
 
 	script.
 		$(function(){
-			$("button[type='submit']").attr("disabled","disabled");
+			var isCreateBlog=$("form").attr('action').indexOf('createBlog')>-1;
+			if(isCreateBlog){
+				$("button[type='submit']").attr("disabled","disabled");
+			}
 
 			$("#slug").blur(function(){
 				var $slut=$(this);

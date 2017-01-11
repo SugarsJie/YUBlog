@@ -1,10 +1,13 @@
 ﻿extends ../layout
 
 block content
-	ul
+	div.blogDetail-wrapper
 		each val,index in blogs
-			li
-				p
-					a(href='')=val.title
+			div
+				a(href="/blog"+moment(val.date).format('/YYYY/MM/DD/')+val.slug)
+					h2=val.title
+				a(href="/blog"+moment(val.date).format('/YYYY/MM/DD/')+val.slug)
+					p(class='blog-summary')=val.summary+"…"
+			<hr/>
 
 	include ../share/_paginate.pug

@@ -7,6 +7,7 @@ var Blog = new Schema({
     title: String,
     author: String,
     tags: String,
+    summary:String,
     body: String,
     comments: [{ body: String, date: Date }],
     date: { type: Date, default: Date.now },
@@ -16,6 +17,7 @@ var Blog = new Schema({
         votes: Number,
         favs: Number
     },
+    readCount:Number,
     blogType: String,
     isDeleted: Boolean,
     slug:String

@@ -11,14 +11,13 @@ router.use(paginate.middleware(10, 50));
 
 //管理后台需要登录后才能进入
 router.use(function (req, res, next) {
-    return next();
-//    res.locals.user = req.user;
-//    req.session.returnUrl = req.originalUrl;
-//    if (req.user) {
-//        next();
-//    } else {
-//        res.redirect('/login');
-//    }
+    res.locals.user = req.user;
+    req.session.returnUrl = req.originalUrl;
+    if (req.user) {
+        next();
+    } else {
+        res.redirect('/login');
+    }
 });
 
 //管理后台博客列表
@@ -30,7 +29,6 @@ router.get('/', blogService.findBlogTypes,function (req, res, next) {
     var orderPrefix = order > 0 ? '' : '-';
     var orderStr = orderPrefix + sort;
     var query = getQuery(req);
-    var queryToDisplay = getQueryToDisplay(req);
     
     var x = req.blogTypes;
     var defaultBlogType = new BlogType();
@@ -42,12 +40,12 @@ router.get('/', blogService.findBlogTypes,function (req, res, next) {
             title: 'Manage-Home',
             order: order * -1,
             sort: sort,
-            query: queryToDisplay,
+            query: getQueryToDisplay(req),
             blogTypes: x,
             moment: moment,
             blogs: addOrderNumber(result.docs, currentPage, pageSize),
             pageCount: result.pages,
-            pages: paginate.getArrayPages(req)(2, result.pages, currentPage)
+            pages: paginate.getArrayPages(req)(10, result.pages, currentPage)
         });
     });
 });
@@ -114,6 +112,7 @@ router.post('/createBlog', function (req, res, next) {
         tags:req.body.tags,
         author: "york",
         body: req.body.editorBlog,
+        summary: req.body.summary,
         comments: [],
         date: new Date(),
         hidden: req.body.publish !=='on',
@@ -132,7 +131,7 @@ router.get('/blogDetail/:slug', blogService.findBlog,function (req,res,next) {
 });
 
 //修改博客
-router.get('/editBlog/:slug', blogService.findBlogTypes, blogService.findBlog, function (req, res, next) {
+router.get('/editBlog/:Id', blogService.findBlogTypes, blogService.findBlogById, function (req, res, next) {
     res.render("manage/editBlog", { title:'Modify Blog',blog: req.blog, blogTypes: req.blogTypes });
 });
 
@@ -143,6 +142,7 @@ router.post('/editBlog', function (req, res, next) {
             tags: req.body.tags,
             author: "york",
             body: req.body.editorBlog,
+            summary: req.body.summary,
             comments: [],
             modifyDate: new Date(),
             hidden: req.body.publish !== 'on',

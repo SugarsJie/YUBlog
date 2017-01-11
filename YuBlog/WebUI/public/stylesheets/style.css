@@ -23,6 +23,7 @@ div.login-wrapper .btn-login {
 div.create-blog-warpper {
   width: 1024px;
   margin-top: 20px;
+  margin: auto;
 }
 div.blog-type-wrapper {
   border-radius: 5px;
@@ -47,13 +48,9 @@ caption {
 div.buttons_wrapper {
   text-align: right;
 }
-h1.blogTitle {
-  text-align: center;
-  color: #000;
-}
 div.div_center {
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 }
 .w100 {
   width: 100px;
@@ -70,6 +67,9 @@ div.div_center {
 .ml20 {
   margin-left: 20px !important;
 }
+.h90 {
+  height: 90px !important;
+}
 .deleted {
   color: #f00;
 }
@@ -80,10 +80,34 @@ div.div_center {
 .form-inline label {
   margin-right: 5px !important;
 }
+.blog-type-wrapper.with-border th,
 .blog-type-wrapper.with-border th a {
   color: #808080;
   font-size: 14px;
 }
 .color-grey {
   color: #999;
+}
+.blogBody-truncate-homePage {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.blog-summary {
+  text-indent: 2em;
+  color: #999;
+}
+.blog-summary:hover {
+  color: #ce0000;
+  text-decoration: underline;
+}
+.blogDetail-wrapper {
+  width: 700px;
+  margin: auto;
+  padding: 40px 0 20px 0;
+}
+h1.blogTitle {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 30px;
 }

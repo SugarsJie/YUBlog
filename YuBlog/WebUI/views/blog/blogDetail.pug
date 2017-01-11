@@ -1,0 +1,14 @@
+﻿extends ../layout
+
+block content
+	link(rel='stylesheet', href='/ckeditor_4.6.0/plugins/codesnippet/lib/highlight/styles/tomorrow-night.css')
+	script(src='/ckeditor_4.6.0/plugins/codesnippet/lib/highlight/highlight.pack.js')
+	script.
+		hljs.initHighlightingOnLoad();
+	div.blogDetail-wrapper
+		h1.blogTitle=blog.title
+		.div_center
+			//span=blog.author
+			span.author=moment(blog.date).format('YYYY-MM-DD')
+		div!=blog.body
+		<br/>

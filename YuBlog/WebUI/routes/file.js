@@ -5,6 +5,16 @@ var multer = require('multer');
 var uuid = require('node-uuid');
 var path = require('path');
 
+router.use(function (req, res, next) {
+    res.locals.user = req.user;
+    req.session.returnUrl = req.originalUrl;
+    if (req.user) {
+        next();
+    } else {
+        res.redirect('/login');
+    }
+});
+
 var storage = multer.diskStorage({
     destination: function(req, file, cb) {
         cb(null, "public/uploads");

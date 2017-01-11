@@ -34,8 +34,9 @@ block content
 	.blog-type-wrapper.with-border
 		table.table
 			<col width="4%" />
-			<col width="18%" />
-			<col width="10%" />
+			<col width="22%" />
+			<col width="6%" />
+			//<col width="14%" />
 			<col width="10%" />
 			<col width="6%" />
 			<col width="6%" />
@@ -52,9 +53,14 @@ block content
 						if sort=='title'
 							include ../share/_orderImg.pug
 					th 
-						a(href=paginate.href({ sort: 'slug',order:order  })) SLUG
-						if sort=='slug'
+						a(href=paginate.href({ sort: 'readCount',order:order })) 计数
+						if sort=='readCount'
 							include ../share/_orderImg.pug
+					//
+						th 
+							a(href=paginate.href({ sort: 'slug',order:order  })) SLUG
+							if sort=='slug'
+								include ../share/_orderImg.pug
 					th 
 						a(href=paginate.href({ sort: 'tags',order:order  })) 标签
 						if sort=='tags'
@@ -90,7 +96,8 @@ block content
 						td=val._doc.orderNumber
 						td
 							a(href="/manage/blogDetail/"+val.slug class=val.isDeleted ? 'deleted' : 'color-grey')=val.title
-						td=val.slug
+						td=val.readCount
+						//td=val.slug
 						td=val.tags
 						td=val.blogType
 						if val.hidden
@@ -105,7 +112,7 @@ block content
 						td=moment(val.date).format('YYYY-MM-DD hh:mm:ss')
 						td=moment(val.modifyDate).format('YYYY-MM-DD hh:mm:ss')
 						td 
-							<a target="_blank" class="btn btn-primary btn-xs" role="button" href="/manage/editBlog/#{val.slug}">修改</a>
+							<a target="_blank" class="btn btn-primary btn-xs" role="button" href="/manage/editBlog/#{val._id}">修改</a>
 							<input name="btnDeleteBlog" type='button' class='btn btn-danger btn-xs ml5' data-id="#{val._id}" data-title="#{val.title}" value='删除'></input>
 	include ../share/_paginate.pug
 

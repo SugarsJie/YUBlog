@@ -9,6 +9,13 @@ function findBlog(req, res, next) {
     });
 }
 
+function findBlogById(req, res, next) {
+    Blog.findOne({ _id: req.params.Id }, function (err, blog) {
+        req.blog = blog;
+        next();
+    });
+}
+
 function findBlogTypes(req, res, next) {
     BlogType.find({}).sort({ name: 'asc' }).exec(function (err, blogTypes) {
         req.blogTypes = blogTypes;
@@ -17,9 +24,21 @@ function findBlogTypes(req, res, next) {
 }
 
 function findRecentUpdateBlogs(req, res, next) {
-    Blog.find({ "isDeleted": false, hidden: false }).sort({ date: 'desc' }).limit(3).exec(function (err, blogs) {
+    Blog.find({ "isDeleted": false, hidden: false }).sort({ date: 'desc' }).limit(6).exec(function (err, blogs) {
         req.blogs = blogs;
         next();
+    });
+}
+
+function updateReadCount(req, res, next) {
+    Blog.findOne({ slug: req.params.slug }, function(err, blog) {
+        blog.readCount++;
+        blog.save(function(err) {
+            if (err)
+                next();
+            else
+                next();
+        });
     });
 }
 
@@ -55,7 +74,9 @@ function findBlogTypeCount(req, res, next) {
 
 module.exports = {
     findBlog: findBlog,
+    findBlogById: findBlogById,
     findBlogTypes: findBlogTypes,
     findRecentUpdateBlogs: findRecentUpdateBlogs,
-    findBlogTypeCount: findBlogTypeCount
+    findBlogTypeCount: findBlogTypeCount,
+    updateReadCount: updateReadCount
 };

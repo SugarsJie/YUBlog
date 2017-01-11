@@ -1076,6 +1076,7 @@
     <Content Include="public\stylesheets\style.styl" />
     <Content Include="README.md" />
     <Content Include="views\about.pug" />
+    <Content Include="views\blog\blogDetail.pug" />
     <Content Include="views\blog\blogList.pug" />
     <Content Include="views\error.pug" />
     <Content Include="views\file\fileUpload.pug" />
