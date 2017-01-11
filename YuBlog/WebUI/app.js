@@ -47,7 +47,7 @@ app.use('/file', file);
 app.use('/blog', blog);
 
 // passport config
-var Account = require('./models/account');
+var Account = require('../models/Account');
 passport.use(new LocalStrategy(Account.authenticate()));
 passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
