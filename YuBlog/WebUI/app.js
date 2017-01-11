@@ -25,7 +25,7 @@ var file = require('./routes/file');
 var blog = require('./routes/blog');
 
 //app.set('port',"8080");
-var listener = app.listen(8080);
+var listener = app.listen(8082);
 //console.log('Your friendly Express server, listening on port %s', listener.address().port);
 
 // view engine setup
