@@ -24,8 +24,8 @@ var manage = require('./routes/manage');
 var file = require('./routes/file');
 var blog = require('./routes/blog');
 
-app.set('port',"8080");
-var listener = app.listen(app.get('port'));
+//app.set('port',"8080");
+var listener = app.listen(8080);
 //console.log('Your friendly Express server, listening on port %s', listener.address().port);
 
 // view engine setup
@@ -54,6 +54,7 @@ passport.deserializeUser(Account.deserializeUser());
 
 // mongoose
 mongoose.connect('mongodb://127.0.0.1:29082/yublog');
+//mongoose.connect('mongodb://127.0.0.1:27017/yublog');
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
