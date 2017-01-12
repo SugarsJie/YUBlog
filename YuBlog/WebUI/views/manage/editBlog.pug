@@ -2,6 +2,8 @@
 
 block content
 	script(src='/ckeditor_4.6.0/ckeditor.js')
+	script(src='/My97DatePicker/WdatePicker.js')
+
 	.create-blog-warpper
 		form( action=blog.title==undefind?"/manage/createBlog":"/manage/editBlog",method="post")
 			.form-group
@@ -23,6 +25,8 @@ block content
 					input(type='checkbox',id='publicsh',name='publish',class='ml5',checked=blog.hidden==false)
 				label.label-wrapper 删除
 					input(type='checkbox',id='isDeleted',name='isDeleted',class='ml5',checked=blog.isDeleted)
+				label.label-wrapper 设置创建时间
+					input(id="date",name="date",type="text",class="Wdate ml5",onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})",value=moment(blog.date).format('YYYY-MM-DD HH:mm:ss'))
 
 			.form-group
 				<label for="tags">博客摘要</label>

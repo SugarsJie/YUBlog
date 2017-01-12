@@ -540,6 +540,11 @@
     <Compile Include="public\ckeditor_4.6.0\samples\toolbarconfigurator\lib\codemirror\show-hint.js" />
     <Compile Include="public\ckeditor_4.6.0\styles.js" />
     <Compile Include="public\jquery\jquery-1.12.3.min.js" />
+    <Compile Include="public\My97DatePicker\calendar.js" />
+    <Compile Include="public\My97DatePicker\lang\en.js" />
+    <Compile Include="public\My97DatePicker\lang\zh-cn.js" />
+    <Compile Include="public\My97DatePicker\lang\zh-tw.js" />
+    <Compile Include="public\My97DatePicker\WdatePicker.js" />
     <Compile Include="routes\blog.js" />
     <Compile Include="routes\file.js" />
     <Compile Include="routes\index.js" />
@@ -1062,6 +1067,7 @@
     <Content Include="public\ckeditor_4.6.0\skins\moono\images\refresh.png" />
     <Content Include="public\ckeditor_4.6.0\skins\moono\images\spinner.gif" />
     <Content Include="public\ckeditor_4.6.0\skins\moono\readme.md" />
+    <Content Include="public\images\favicon.ico" />
     <Content Include="public\images\img01.gif" />
     <Content Include="public\images\img02.jpg" />
     <Content Include="public\images\img03.gif" />
@@ -1072,6 +1078,13 @@
     <Content Include="public\images\img08.gif" />
     <Content Include="public\images\img09.gif" />
     <Content Include="public\images\spacer.gif" />
+    <Content Include="public\My97DatePicker\skin\datePicker.gif" />
+    <Content Include="public\My97DatePicker\skin\default\datepicker.css" />
+    <Content Include="public\My97DatePicker\skin\default\img.gif" />
+    <Content Include="public\My97DatePicker\skin\WdatePicker.css" />
+    <Content Include="public\My97DatePicker\skin\whyGreen\bg.jpg" />
+    <Content Include="public\My97DatePicker\skin\whyGreen\datepicker.css" />
+    <Content Include="public\My97DatePicker\skin\whyGreen\img.gif" />
     <Content Include="public\stylesheets\default.css" />
     <Content Include="public\stylesheets\style.styl" />
     <Content Include="README.md" />
@@ -1321,6 +1334,11 @@
     <Folder Include="public\images\" />
     <Folder Include="public\javascripts\" />
     <Folder Include="public\jquery\" />
+    <Folder Include="public\My97DatePicker\" />
+    <Folder Include="public\My97DatePicker\lang\" />
+    <Folder Include="public\My97DatePicker\skin\" />
+    <Folder Include="public\My97DatePicker\skin\default\" />
+    <Folder Include="public\My97DatePicker\skin\whyGreen\" />
     <Folder Include="public\uploads\" />
     <Folder Include="public\stylesheets\" />
     <Folder Include="routes\" />

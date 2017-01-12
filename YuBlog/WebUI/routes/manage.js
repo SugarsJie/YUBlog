@@ -102,7 +102,9 @@ function getQueryToDisplay(req) {
 //创建博客
 router.get('/create', function (req, res, next) {
     BlogType.find({}).sort({ name: 'asc' }).exec(function (err, blogTypes) {
-        res.render('manage/editBlog', { title: 'Create Blog', blog: new Blog(), blogTypes: blogTypes });
+        var blog = new Blog();
+        blog.date = new Date().toLocaleString();
+        res.render('manage/editBlog', { title: 'Create Blog', blog: blog, blogTypes: blogTypes, moment: moment });
     });
 });
 
@@ -114,7 +116,7 @@ router.post('/createBlog', function (req, res, next) {
         body: req.body.editorBlog,
         summary: req.body.summary,
         comments: [],
-        date: new Date(),
+        date: new Date().toLocaleString(),
         hidden: req.body.publish !=='on',
         meta: {},
         blogType: req.body.blogType,
@@ -132,7 +134,7 @@ router.get('/blogDetail/:slug', blogService.findBlog,function (req,res,next) {
 
 //修改博客
 router.get('/editBlog/:Id', blogService.findBlogTypes, blogService.findBlogById, function (req, res, next) {
-    res.render("manage/editBlog", { title:'Modify Blog',blog: req.blog, blogTypes: req.blogTypes });
+    res.render("manage/editBlog", { title: 'Modify Blog', blog: req.blog, blogTypes: req.blogTypes, moment: moment });
 });
 
 router.post('/editBlog', function (req, res, next) {
@@ -144,12 +146,13 @@ router.post('/editBlog', function (req, res, next) {
             body: req.body.editorBlog,
             summary: req.body.summary,
             comments: [],
-            modifyDate: new Date(),
+            modifyDate: new Date().toLocaleString(),
             hidden: req.body.publish !== 'on',
             meta: {},
             blogType: req.body.blogType,
             isDeleted: req.body.isDeleted === 'on',
-            slug: req.body.slug
+            slug: req.body.slug,
+            date:req.body.date
         } },
         function (err, doc) {
             if (err) return res.send(500, { error: err });
@@ -188,7 +191,7 @@ router.get('/blogtype', function (req, res) {
 router.post('/createblogtype', function (req, res) {
     var blogType = new BlogType({
         name: req.body.blogtype,
-        date:new Date()
+        date: new Date().toLocaleString()
     });
     blogType.save();
     res.redirect(301, '/manage/blogtype');
