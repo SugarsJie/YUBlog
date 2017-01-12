@@ -9,6 +9,6 @@ block content
 		h1.blogTitle=blog.title
 		.div_center
 			//span=blog.author
-			span.author=moment.utc(blog.date).add(8,"hours").format('YYYY-MM-DD')
+			span.author=moment(blog.date).add(11,"hours").format('YYYY-MM-DD')
 		div!=blog.body
 		<br/>
