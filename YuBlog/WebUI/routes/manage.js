@@ -121,7 +121,7 @@ router.post('/createBlog', function (req, res, next) {
         isDeleted: req.body.isDeleted==='on',
         slug: req.body.slug,
         readCount: 0,
-        homePageOrder:0
+        homePageOrder: req.body.homePageOrder
     });
     blog.save();
     res.redirect('/manage');
