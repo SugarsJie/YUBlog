@@ -119,7 +119,8 @@ router.post('/createBlog', function (req, res, next) {
         meta: {},
         blogType: req.body.blogType,
         isDeleted: req.body.isDeleted==='on',
-        slug: req.body.slug
+        slug: req.body.slug,
+        readCount:0
     });
     blog.save();
     res.redirect('/manage');
