@@ -23,8 +23,8 @@ function findBlogTypes(req, res, next) {
     });
 }
 
-function findRecentUpdateBlogs(req, res, next) {
-    Blog.find({ "isDeleted": false, hidden: false }).sort({ date: 'desc' }).limit(6).exec(function (err, blogs) {
+function findBlogsShowOnHomePage(req, res, next) {
+    Blog.find({ "isDeleted": false, hidden: false, homePageOrder: { $gt: 0 } }).sort({ homePageOrder: 'desc' }).limit(6).exec(function (err, blogs) {
         req.blogs = blogs;
         next();
     });
@@ -76,7 +76,7 @@ module.exports = {
     findBlog: findBlog,
     findBlogById: findBlogById,
     findBlogTypes: findBlogTypes,
-    findRecentUpdateBlogs: findRecentUpdateBlogs,
+    findBlogsShowOnHomePage: findBlogsShowOnHomePage,
     findBlogTypeCount: findBlogTypeCount,
     updateReadCount: updateReadCount
 };

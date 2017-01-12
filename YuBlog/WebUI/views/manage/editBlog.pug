@@ -6,16 +6,16 @@ block content
 
 	.create-blog-warpper
 		form( action=blog.title==undefind?"/manage/createBlog":"/manage/editBlog",method="post")
-			.form-group
+			.form-group.form-inline-left
 				<label for="title">博客标题</label>
 				<input type="text" class="form-control" id="title" name='title' placeholder="标题" value="#{blog.title}" />
-			.form-group
+			.form-group.form-inline-right
 				<label for="slug">SLUG</label>
 				<input type="text" class="form-control" id="slug" name='slug' placeholder="SLUG"  value="#{blog.slug}" />
-			.form-group
+			.form-group.form-inline-left
 				<label for="tags">关键热词</label>
 				<input type="text" class="form-control" id="tags" name='tags' placeholder="关键词" value="#{blog.tags}" />
-			.form-group
+			.form-group.form-inline-right
 				<label for='blogType'>博客类型</label>
 				select.form-control#blogType(name='blogType')
 					each val,index in blogTypes
@@ -25,6 +25,8 @@ block content
 					input(type='checkbox',id='publicsh',name='publish',class='ml5',checked=blog.hidden==false)
 				label.label-wrapper 删除
 					input(type='checkbox',id='isDeleted',name='isDeleted',class='ml5',checked=blog.isDeleted)
+				label.label-wrapper 首页排序
+					input(type='text',id='homePageOrder',name='homePageOrder',class='ml5 w50' value=blog.homePageOrder?blog.homePageOrder:0)
 				label.label-wrapper 设置创建时间
 					input(id="date",name="date",type="text",class="Wdate ml5",onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})",value=moment(blog.date).add(13,"hours").format('YYYY-MM-DD HH:mm:ss'))
 

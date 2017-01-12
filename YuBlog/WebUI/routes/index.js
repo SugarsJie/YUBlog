@@ -8,7 +8,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/',
-    blogService.findRecentUpdateBlogs,
+    blogService.findBlogsShowOnHomePage,
     blogService.findBlogTypes,
     blogService.findBlogTypeCount,
     function (req, res) {

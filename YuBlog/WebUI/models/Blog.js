@@ -20,7 +20,8 @@ var Blog = new Schema({
     readCount:Number,
     blogType: String,
     isDeleted: Boolean,
-    slug:String
+    slug: String,
+    homePageOrder:Number
 });
 
 Blog.plugin(mongoosePaginate);

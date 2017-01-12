@@ -120,7 +120,8 @@ router.post('/createBlog', function (req, res, next) {
         blogType: req.body.blogType,
         isDeleted: req.body.isDeleted==='on',
         slug: req.body.slug,
-        readCount:0
+        readCount: 0,
+        homePageOrder:0
     });
     blog.save();
     res.redirect('/manage');
@@ -151,7 +152,8 @@ router.post('/editBlog', function (req, res, next) {
             blogType: req.body.blogType,
             isDeleted: req.body.isDeleted === 'on',
             slug: req.body.slug,
-            date:req.body.date
+            date: req.body.date,
+            homePageOrder: req.body.homePageOrder
         } },
         function (err, doc) {
             if (err) return res.send(500, { error: err });
