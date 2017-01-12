@@ -26,7 +26,7 @@ block content
 				label.label-wrapper 删除
 					input(type='checkbox',id='isDeleted',name='isDeleted',class='ml5',checked=blog.isDeleted)
 				label.label-wrapper 设置创建时间
-					input(id="date",name="date",type="text",class="Wdate ml5",onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})",value=moment(blog.date).format('YYYY-MM-DD HH:mm:ss'))
+					input(id="date",name="date",type="text",class="Wdate ml5",onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})",value=moment(blog.date).add(13,"hours").format('YYYY-MM-DD HH:mm:ss'))
 
 			.form-group
 				<label for="tags">博客摘要</label>
