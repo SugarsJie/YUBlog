@@ -13,7 +13,7 @@ block content
 				each val,index in blogTypes
 					tr
 						td=val.name
-						td=moment(val.date).add(20,"hours").format('YYYY-MM-DD hh:mm:ss')
+						td=moment(val.date).add(16,"hours").format('YYYY-MM-DD HH:mm:ss')
 						td 
 							form( action="/manage/deleteblogtype",method="post")
 								<input type='hidden' id='id' name='id' value=#{val._id} />
