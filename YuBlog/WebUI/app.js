@@ -9,9 +9,12 @@ var bodyParser = require('body-parser');
 var flash = require('connect-flash');
 var LocalStrategy = require('passport-local').Strategy;
 var mongoose = require("mongoose");
+var favicon = require('serve-favicon');
 
 
 var app = express();
+
+app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
 // required for passport
 app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
@@ -26,7 +29,6 @@ var blog = require('./routes/blog');
 
 //app.set('port',"8080");
 var listener = app.listen(8082);
-//console.log('Your friendly Express server, listening on port %s', listener.address().port);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

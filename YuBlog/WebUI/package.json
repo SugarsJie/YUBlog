@@ -31,7 +31,7 @@
     "passport-local": "1.0.0",
     "passport-local-mongoose": "^4.0.0",
     "pug": "2.0.0-alpha3",
-    "serve-favicon": "~2.3.0",
+    "serve-favicon": "^2.3.2",
     "stylus": "0.54.2"
   }
 }
