@@ -25,7 +25,7 @@ router.get('/', blogService.findBlogTypes,function (req, res, next) {
     var currentPage = req.query.page ? req.query.page : 1;
     var pageSize = req.query.limit ? req.query.limit : 20;
     var order = req.query.order ? req.query.order : 1;
-    var sort = req.query.sort ? req.query.sort : 'date';
+    var sort = req.query.sort ? req.query.sort : '-date';
     var orderPrefix = order > 0 ? '' : '-';
     var orderStr = orderPrefix + sort;
     var query = getQuery(req);
