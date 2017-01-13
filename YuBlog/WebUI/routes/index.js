@@ -13,7 +13,6 @@ router.get('/',
     blogService.findBlogTypeCount,
     function (req, res) {
         res.render('home', {
-            title: 'YuBlog',
             blogs: req.blogs,
             blogTypeCount: req.blogTypeCount,
             moment: moment
