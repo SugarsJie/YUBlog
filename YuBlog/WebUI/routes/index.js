@@ -19,6 +19,7 @@ router.get('/',
         });
     });
 
+/*暂时只允许注册一个用户作为管理后台的使用者*/
 router.get('/register', function (req, res) {
     Account.count({}, function (err, count) {
         console.log("Number of users:", count);
