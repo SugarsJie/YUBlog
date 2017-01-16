@@ -19,12 +19,18 @@ router.get('/',
         });
     });
 
-router.get('/register', function(req,res) {
-    Account.register(new Account({ username: "yzw" }), "Village9527", function (err, account) {
-        if (err) {
-            return res.render('/', { account: account });
-        }
-    });
+router.get('/register', function (req, res) {
+    Account.count({}, function (err, count) {
+        console.log("Number of users:", count);
+        if (count > 0) return res.send('Access Denied!');
+        Account.register(new Account({ username: req.query.username }), req.query.password, function (err, account) {
+            if (err) {
+                return res.send('Register Denied!')
+            }
+            res.redirect('/login');
+        });
+    })
+    
 });
 
 //登录
