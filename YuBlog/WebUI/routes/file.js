@@ -147,7 +147,7 @@ router.get('/download', function (req, res, next) {
             doc.save();
         }
 
-        var file = global.appRoot + "\\uploadFiles\\" + req.query.fileName
+        var file = global.appRoot + "/uploadFiles/" + req.query.fileName
         res.download(file);
 
         //var filename = path.basename(file);
