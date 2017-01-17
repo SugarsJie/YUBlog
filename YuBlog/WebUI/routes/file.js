@@ -13,6 +13,10 @@ const fs = require('fs');
 router.use(paginate.middleware(10, 50));
 
 router.use(function (req, res, next) {
+    if (/^\/file\/download.*/.test(req.originalUrl)) {
+        return next();
+    }
+
     res.locals.user = req.user;
     req.session.returnUrl = req.originalUrl;
     if (req.user) {
