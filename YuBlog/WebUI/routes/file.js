@@ -148,15 +148,16 @@ router.get('/download', function (req, res, next) {
         }
 
         var file = global.appRoot + "\\uploadFiles\\" + req.query.fileName
+        res.download(file);
 
-        var filename = path.basename(file);
-        var mimetype = mime.lookup(file);
+        //var filename = path.basename(file);
+        //var mimetype = mime.lookup(file);
 
-        res.setHeader('Content-disposition', 'attachment; filename=' + filename);
-        res.setHeader('Content-type', mimetype);
+        //res.setHeader('Content-disposition', 'attachment; filename=' + filename);
+        //res.setHeader('Content-type', mimetype);
 
-        var filestream = fs.createReadStream(file);
-        filestream.pipe(res);
+        //var filestream = fs.createReadStream(file);
+        //filestream.pipe(res);
     });
 });
 
