@@ -1,0 +1,52 @@
+﻿extends ../layoutMng
+
+block content
+	.blog-type-wrapper.with-border
+		table.table
+			<col width="40%" />
+			<col width="30%" />
+			<col width="10%" />
+			<col width="10%" />
+			<col width="10%" />
+			thead
+				tr
+					th 文件名
+					th 系统名
+					th 下载次数
+					th 大小
+					th 操作
+			if files
+				each val,index in files
+					tr
+						td=val.originalFileName
+						td=val.hashedFileName
+						td=val.downloadCount
+						td=val.downloadCount
+						td 
+							<input name="btnDeleteBlog" type='button' class='btn btn-danger btn-xs ml5' data-id="#{val._id}" data-title="#{val.hashedFileName}" value='删除'></input>
+	include ../share/_paginate.pug
+
+	script.
+		$(function(){
+			$("input[name='btnDeleteBlog']").click(function(){
+				var title=$(this).data("title");
+				var blogId=$(this).data("id");
+				var confirmStr="博客标题："+title+"\n确认要删除该博客吗？"
+
+				if(confirm(confirmStr)==true){
+					$.ajax({
+					  method: "POST",
+					  url: "manage/deleteBlog",
+					  data: { blogId: blogId},
+					  success:function(data,txtStatus,obj){
+					      if(data=="success"){
+							location.href="/manage";
+						  }
+					  },
+					  error:function(obj,txtStatus,error){
+						alert(obj.responseText);
+					  }
+					})
+				}
+			});
+		});

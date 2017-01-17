@@ -37,6 +37,7 @@
     <Compile Include="models\Account.js" />
     <Compile Include="models\Blog.js" />
     <Compile Include="models\BlogType.js" />
+    <Compile Include="models\File.js" />
     <Compile Include="public\bootstrap-3.3.6\js\bootstrap.js" />
     <Compile Include="public\bootstrap-3.3.6\js\bootstrap.min.js" />
     <Compile Include="public\bootstrap-3.3.6\js\npm.js" />
@@ -1092,6 +1093,7 @@
     <Content Include="views\blog\blogDetail.pug" />
     <Content Include="views\blog\blogList.pug" />
     <Content Include="views\error.pug" />
+    <Content Include="views\file\fileList.pug" />
     <Content Include="views\file\fileUpload.pug" />
     <Content Include="views\home.pug" />
     <Content Include="views\layout.pug" />
