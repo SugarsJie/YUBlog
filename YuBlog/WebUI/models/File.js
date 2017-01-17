@@ -8,6 +8,7 @@ var File = new Schema({
     date: { type: Date, default: Date.now },
     hashedFileName: String,
     downloadCount: Number,
+    size: Number,
     remark:String
 });
 

@@ -1,46 +1,60 @@
 ﻿extends ../layoutMng
 
 block content
+	form(class='form-inline',action='/file/filelist',method="get")
+		.form-group
+			<label for="title">文件名</label>
+			input(type="text",class="form-control",id="originalFileName",name='originalFileName',placeholder="文件名" value=query.originalFileName?query.originalFileName:"")
+		.form-group
+			<label for="title">备注</label>
+			input(type="text",class="form-control",id="remark",name='remark',placeholder="备注" value=query.remark?query.remark:"")
+
+		button(type='submit',class='btn btn-primary w100 ml20') 查询
+		<a target="_blank" href="/file/uploadFile" class="btn btn-primary w100 ml20" role="button">上传文件</a>
+
 	.blog-type-wrapper.with-border
 		table.table
-			<col width="40%" />
-			<col width="30%" />
+			<col width="25%" />
+			<col width="25%" />
+			<col width="26%" />
 			<col width="10%" />
-			<col width="10%" />
-			<col width="10%" />
+			<col width="7%" />
+			<col width="7%" />
 			thead
 				tr
 					th 文件名
 					th 系统名
+					th 备注
 					th 下载次数
-					th 大小
+					th 大小(M)
 					th 操作
 			if files
 				each val,index in files
 					tr
-						td=val.originalFileName
+						td
+							a(href="/file/download?fileName="+val.hashedFileName)=val.originalFileName
 						td=val.hashedFileName
+						td=val.remark
 						td=val.downloadCount
-						td=val.downloadCount
+						td=((val.size/1024/1024).toFixed(4))
 						td 
-							<input name="btnDeleteBlog" type='button' class='btn btn-danger btn-xs ml5' data-id="#{val._id}" data-title="#{val.hashedFileName}" value='删除'></input>
+							<input name="btnDeleteBlog" type='button' class='btn btn-danger btn-xs ml5' data-name="#{val.hashedFileName}" value='删除'></input>
 	include ../share/_paginate.pug
 
 	script.
 		$(function(){
 			$("input[name='btnDeleteBlog']").click(function(){
-				var title=$(this).data("title");
-				var blogId=$(this).data("id");
-				var confirmStr="博客标题："+title+"\n确认要删除该博客吗？"
+				var hashedFileName=$(this).data("name");
+				var confirmStr="文件名："+hashedFileName+"\n确认要删除该文件吗？"
 
 				if(confirm(confirmStr)==true){
 					$.ajax({
 					  method: "POST",
-					  url: "manage/deleteBlog",
-					  data: { blogId: blogId},
+					  url: "/file/delete",
+					  data: { hashedFileName: hashedFileName},
 					  success:function(data,txtStatus,obj){
 					      if(data=="success"){
-							location.href="/manage";
+							location.href="/file/filelist";
 						  }
 					  },
 					  error:function(obj,txtStatus,error){

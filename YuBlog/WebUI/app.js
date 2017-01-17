@@ -14,6 +14,7 @@ var favicon = require('serve-favicon');
 
 var app = express();
 
+global.appRoot = path.resolve(__dirname);
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
 // required for passport
