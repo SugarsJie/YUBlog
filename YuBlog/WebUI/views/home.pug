@@ -1,4 +1,4 @@
-extends layout
+ï»¿extends layout
 
 block content
 	<div id="content">
@@ -8,16 +8,16 @@ block content
 					a(href='blog'+moment(val.date).format('/YYYY/MM/DD/')+val.slug)
 						h2=val.title
 					a(href='blog'+moment(val.date).format('/YYYY/MM/DD/')+val.slug)
-						p(class='blog-summary')=val.summary+"¡­"
+						p(class='blog-summary')=val.summary+"ï¿½ï¿½"
 		</div>
 		<div id="sidebar">
 			#updates.boxed
-				<h2 class="title">ÎÄÕÂ·ÖÀà</h2>
+				<h2 class="title">åšå®¢åˆ†ç±»</h2>
 				.content
 					ul
 						each val,index in blogTypeCount
 							li
-								a(href='blog/list?blogType='+val._id)=val._id + "£¨" +val.count+"£©"
+								a(href='blog/list?blogType='+val._id)=val._id + "ï¿½ï¿½" +val.count+"ï¿½ï¿½"
 		</div>
 	</div>
 
