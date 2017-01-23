@@ -114,7 +114,7 @@ router.post('/createBlog', function (req, res, next) {
         body: req.body.editorBlog,
         summary: req.body.summary,
         comments: [],
-        date: new Date(),
+        date: req.body.date,
         hidden: req.body.publish !=='on',
         meta: {},
         blogType: req.body.blogType,
