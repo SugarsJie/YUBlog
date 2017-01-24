@@ -7,7 +7,7 @@ var blogService = require('../service/blogService');
 var paginate = require('express-paginate');
 var router = express.Router();
 
-router.use(paginate.middleware(10, 50));
+router.use(paginate.middleware(20, 50));
 
 //管理后台需要登录后才能进入
 router.use(function (req, res, next) {
