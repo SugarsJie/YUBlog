@@ -129,7 +129,7 @@ router.post('/createBlog', function (req, res, next) {
 
 //博客详细
 router.get('/blogDetail/:slug', blogService.findBlog,function (req,res,next) {
-    res.render('manage/blogDetail', { blog: req.blog, moment: moment });
+    res.render('blog/blogDetail', { blog: req.blog, moment: moment });
 });
 
 //修改博客

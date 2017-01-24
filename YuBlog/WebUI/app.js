@@ -56,8 +56,11 @@ passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
 
 // mongoose
-mongoose.connect('mongodb://yublog:YUBlog_2017@localhost:27111/yublog');
-//mongoose.connect('mongodb://127.0.0.1:27017/yublog');
+if (app.get('env') === 'development') {
+    mongoose.connect('mongodb://127.0.0.1:27017/yublog');
+} else {
+    mongoose.connect('mongodb://yublog:YUBlog_2017@localhost:27111/yublog');
+}
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
