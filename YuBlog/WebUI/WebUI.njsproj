@@ -37,6 +37,7 @@
     <Compile Include="models\Account.js" />
     <Compile Include="models\Blog.js" />
     <Compile Include="models\BlogType.js" />
+    <Compile Include="models\Comment.js" />
     <Compile Include="models\File.js" />
     <Compile Include="public\bootstrap-3.3.6\js\bootstrap.js" />
     <Compile Include="public\bootstrap-3.3.6\js\bootstrap.min.js" />
